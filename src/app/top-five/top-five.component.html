@@ -1,0 +1,16 @@
+<section>
+    <div class="page-header">
+        <h1>Contents Keyword : Top 5 
+            <small>전체 콘텐츠 중 최다 등장 키워드 Top 5</small>
+        </h1>
+    </div>
+
+    <ul>
+        <li *ngFor="let keyword of topFive">
+            <span class="badge">
+                {{keyword}}
+                <!-- <span class="badge">10 회</span> -->
+            </span>
+        </li>
+    </ul>
+</section>

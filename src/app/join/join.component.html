@@ -1,0 +1,35 @@
+<section>
+  <div class="page-header">
+    <h1>Join
+      <small>회원 가입</small>
+    </h1>
+  </div>
+
+  <div class="row" [hidden]="submitted">
+    <form (ngSubmit)="onSubmit()" #joinForm="ngForm">
+      <div class="input-group ">
+        <span class="input-group-addon" id="sizing-addon2">
+          <span class="glyphicon glyphicon-user"></span>
+        </span>
+        <input type="text" class="form-control" id="userId" placeholder="아이디" 
+                required [(ngModel)]="model.userId" name="userId" #name="ngModel">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">중복 확인</button>
+        </span>
+      </div>
+  
+      <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon2">
+          <span class="glyphicon glyphicon-lock"></span>
+        </span>
+        <input type="text" class="form-control" placeholder="비밀번호" aria-describedby="sizing-addon2">
+      </div>
+  
+      <div class="text-center" role="group" aria-label="...">
+          
+        <button type="button" class="btn btn-lg btn-block">회원 가입</button>
+      </div>
+    </form>
+  </div>
+
+</section>
