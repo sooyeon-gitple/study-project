@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Content} from './content';
+import {Content} from '../app/model/content';
 import {Observable, of} from 'rxjs';
 
 @Injectable({
@@ -35,4 +35,26 @@ export class ContentsService {
   getContents():Observable<Content[]>{
     return of(this.contents);
   }
+
+  getContent(id:string):Observable<Content>{
+    return of(this.contents.find(content=> content.id===id))
+  }
+
+  postNewContent(data):Observable<Content>{
+    this.contents = [...this.contents, data]
+    return data;
+  }
+  editContent(id,data):void{
+    for(let content of this.contents){
+      if(content.id ===id){
+        content = data;
+      }
+    }
+    console.log(this.contents);
+  }
+
+  deleteContent(id):void{
+    this.contents = this.contents.filter( content => content.id !==id)
+  }
+
 }

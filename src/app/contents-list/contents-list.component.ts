@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {Content} from '../content';
-import {ContentsService} from '../contents.service'
+import {Content} from '../model/content';
+import {ContentsService} from '../../service/contents.service'
 
 @Component({
   selector: 'app-contents',
-  templateUrl: './contents.component.html',
-  styleUrls: ['./contents.component.css']
+  templateUrl: './contents-list.component.html',
+  styleUrls: ['./contents-list.component.css']
 })
-export class ContentsComponent implements OnInit {
+export class ContentsListComponent implements OnInit {
 
   contents: Content[];
-  model = new Content( "21", "test title 555", new Date("2021-01-05"),"text text","211");
+  // model = new Content( "21", "test title 555", new Date("2021-01-05"),"text text","211");
   
   constructor( private contentsService: ContentsService) { }
 

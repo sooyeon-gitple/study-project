@@ -9,5 +9,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'study-project';
 
-
+  onLogout(){
+    window.confirm('로그아웃 하시겠습니까?')
+  }
+  
 }

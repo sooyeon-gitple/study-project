@@ -1,0 +1,39 @@
+<section>
+  <div class="page-header">
+    <h1>
+      {{state==="post"? "새 글 등록하기":"글 수정하기"}}
+    </h1>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" #postingForm="ngForm">
+    <div class="form-groupt">
+
+      <label for="title">제목</label>
+      <input type="text" class="form-control" id="title" requried [(ngModel)]="postingModel.title" name="title"
+        #title="ngModel">
+
+      <label for="text">내용</label>
+      <input type="text" class="form-control" id="text" requried [(ngModel)]="postingModel.text" name="text"
+        #title="ngModel">
+
+    </div>
+
+    <div class="text-center" role="group">
+
+      <button type="button" *ngIf="state==='edit'" class="btn btn-warning" (click)="deleteContent()">
+        삭제
+      </button>
+
+      <button type="button" class="btn" (click)="goBack()">
+        취소
+      </button>
+
+      <button type="submit" class="btn btn-primary">
+        {{ state==="post"? "등록":"수정"}}
+      </button>
+
+    </div>
+  </form>
+
+
+</section>

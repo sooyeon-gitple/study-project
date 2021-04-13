@@ -7,7 +7,11 @@
 
   <ul class="list-group">
     <li *ngFor="let content of contents" class="list-group-item">
-      <h3> 제목 : {{content.title}}</h3>
+      <h3>
+        <a routerLink="/content/{{content.id}}">
+          제목 : {{content.title}}
+        </a> 
+      </h3>
       <span class="badge"> userId : {{content.userId}}</span>
       <div> 등록일 : {{content.date |date}}</div>
       <!-- <div>
