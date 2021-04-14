@@ -1,0 +1,79 @@
+<section>
+  <div class="page-header">
+    <h1>Join
+      <small>회원 가입</small>
+    </h1>
+  </div>
+
+  <div class="row" [hidden]="submitted">
+    <form (ngSubmit)="onSubmit()" #joinForm="ngForm">
+      <div class="input-group ">
+        <span class="input-group-addon" id="sizing-addon2">
+          <span class="glyphicon glyphicon-user"></span>
+        </span>
+        <input type="text" class="form-control" id="joinId" 
+                placeholder="아이디" 
+                required 
+                [(ngModel)]="joinModel.userId" name="joinId" 
+                (ngModelChange)="onChangeId(joinId)"
+                #joinId="ngModel"
+                
+        >
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" (click)="idValidCheck()">
+            중복 확인
+          </button>
+        </span>
+      </div>
+
+      <div>
+        <div [hidden]="joinId.valid || joinId.pristine">
+          아이디를 입력해주세요.
+        </div>
+        <div [hidden]= "idCheck!=='ready' || joinId.pristine || joinId.invalid" class="text-warning">
+          아이디 중복 확인을 해주세요
+        </div>
+        <div [hidden]="idCheck!=='fail'|| joinId.pristine" class="text-danger">
+          이미 가입된 아이디입니다.
+        </div>
+        <div [hidden]="idCheck!=='pass'|| joinId.pristine" class="text-success">
+          사용 가능한 아이디입니다.
+        </div>
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon2">
+          <span class="glyphicon glyphicon-lock"></span>
+        </span>
+        <input type="password" class="form-control" id="joinPassword" placeholder="비밀번호" 
+              required
+              aria-describedby="sizing-addon2"
+              [(ngModel)]="joinModel.password" name="joinPassword"
+              #joinPassword = "ngModel"
+        >
+      </div>
+
+      <div [hidden]="joinPassword.valid || joinPassword.pristine">
+        비밀번호를 입력해주세요.
+      </div>
+
+      <div class="text-center" role="group" aria-label="...">
+        <button type="submit" class="btn btn-lg btn-block btn-primary" 
+                [disabled]="!joinForm.form.valid"
+        >
+           회원 가입
+          </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="row" [hidden]="!submitted">
+    회원 가입 완료!
+    
+    <button routerLink="/">
+      홈으로
+    </button>
+  </div>
+
+
+</section>
