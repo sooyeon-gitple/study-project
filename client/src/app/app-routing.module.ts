@@ -7,8 +7,10 @@ import {LoginComponent} from './login/login.component';
 import {TopFiveComponent} from './top-five/top-five.component';
 import {ContentsDetailComponent} from './contents-detail/contents-detail.component';
 import {ContentsPostingComponent} from './contents-posting/contents-posting.component';
+import {MainComponent} from './main/main.component';
 
 const routes:Routes = [
+  { path: '', component: MainComponent },
   { path: 'join', component: JoinComponent },
   { path: 'login', component: LoginComponent },
   { path: 'contents-list', component: ContentsListComponent },
@@ -19,7 +21,7 @@ const routes:Routes = [
 ];
 
 @NgModule({
-  // declarations: [],
+  declarations: [],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

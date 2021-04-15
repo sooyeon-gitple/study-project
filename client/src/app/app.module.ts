@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ContentsDetailComponent } from './contents-detail/contents-detail.component';
 import { ContentsPostingComponent } from './contents-posting/contents-posting.component';
 import {GlobalState} from './global-state.service';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +22,13 @@ import {GlobalState} from './global-state.service';
     LoginComponent,
     ContentsDetailComponent,
     ContentsPostingComponent,
-
+    MainComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [GlobalState],
   bootstrap: [AppComponent]
