@@ -47,6 +47,11 @@ export class JoinComponent implements OnChanges {
     
     if(this.idCheck && this.joinModel.userId && this.joinModel.password){
       if(window.confirm("회원 가입 하시겠습니까?")){
+        
+
+        const userData = {userId :this.joinModel.userId, password: this.joinModel.password};
+        this.userService.join(userData);
+        
         window.alert("가입 되었습니다.")
         this.submitted = true;
       }

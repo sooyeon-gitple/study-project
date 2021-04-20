@@ -14,7 +14,7 @@ import {GlobalState} from '../global-state.service';
 export class LoginComponent implements OnInit {
 
   submitted:boolean = false;
-  loginUser:User = {userId:"", token:""}
+  loginUser:User = {userId:"", token:"", message:""}
 
   constructor(
     private userService: UserService,
@@ -24,21 +24,24 @@ export class LoginComponent implements OnInit {
   
 
   ngOnInit(): void {
-
+    this._state.subscribe('login', (userData) => {
+      setTimeout(() => {
+        if(userData.token && userData.message==="success"){
+          window.alert("로그인 되었습니다.");
+          // localStorage.setItem("userName","test user name")
+          this.router.navigate(['/contents-list']);
+          return;
+        }else if(userData.message==="failed"){
+          return window.alert("로그인 실패!");
+        }
+      });
+    
+    });
   }
 
   onSubmit():void{
     console.log("login submit")
     this.userService.login(this.loginUser.userId, this.loginUser.password);
-    this.router.navigate(['/contents-list']);
-
-    // this._state.notify('login', {
-    //   userId: this.loginUser.userId,
-    //   token: "fake token"
-    // });
-   
-    // localStorage.setItem("userName","test user name")
-    // localStorage.setItem("token","tokentoektn123123")
   }
 
 }

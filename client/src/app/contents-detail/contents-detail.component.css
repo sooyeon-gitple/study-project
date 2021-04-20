@@ -1,0 +1,15 @@
+.btn.btn-primary>a{
+    color:#fff;
+}
+.btn.btn-primary>a:hover{
+    text-decoration: none;
+}
+
+h3{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+span.date{
+  color: #888;
+}

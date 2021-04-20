@@ -23,7 +23,7 @@ const login = (req:express.Request, res:express.Response, next:express.NextFunct
                     next(err) 
                 }
     
-                const token = jwt.sign(user.toJSON(), KEY, {expiresIn:"1h"})
+                const token = jwt.sign(user.toJSON(), KEY, {expiresIn:"12h"})
                 return res.json({user, token});
              });
         })(req,res);

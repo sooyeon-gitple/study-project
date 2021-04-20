@@ -12,7 +12,8 @@ export class UserService {
     {
       userId: "nana",
       password:"nana",
-      joinedDate: new Date("2020-01-01")
+      joinedDate: new Date("2020-01-01"),
+
     },
     {
       userId: "mango",
@@ -35,6 +36,7 @@ export class UserService {
 
   join(userData):Observable<Join>{
     this.userList = [...this.userList, userData];
+    console.log(this.userList)
     return userData;
   }
 
@@ -44,14 +46,14 @@ export class UserService {
     if(selectedUser){
       this._state.notify('login', {
         userId: userId,
-        token: "fake token",
-        message: "login success"
+        token: "fake token",   
+        message: "success"           
       });
     }else{
       this._state.notify('login', {
         userId: "",
         token: "",
-        message: "login fail"
+        message: "failed"
       });
     }
   }

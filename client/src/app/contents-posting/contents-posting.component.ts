@@ -60,8 +60,10 @@ export class ContentsPostingComponent implements OnInit {
 
 
   deleteContent():void{
-    this.contentService.deleteContent(this.id);
-    this.router.navigate(['/contents-list']); //redirect
+    if(window.confirm('삭제하시겠습니까?') ){
+      this.contentService.deleteContent(this.id);
+      this.router.navigate(['/contents-list']); //redirect
+    }
   }
 
   onSubmit():void{

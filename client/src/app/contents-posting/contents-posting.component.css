@@ -1,0 +1,7 @@
+div.text-center{
+    margin-top: 20px;
+}
+
+div.text-center >button{
+    margin: 10px;
+}

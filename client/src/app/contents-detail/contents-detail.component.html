@@ -1,23 +1,28 @@
 <section>
-  <div class="page-header">
-    <h1>
-      {{content.title}}
-      <small>{{content.date}}</small>
-    </h1>
-  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        {{content.title}}
+      </h3>
+      <span class="date">
+        {{content.date | date}}
+      </span>
+    </div>
 
-  <div>
-    <span>{{content.userId}}</span>
-    <div>
+    <div class="panel-body">
+      <div class="text-right">
+        ID : {{content.userId}}
+      </div>
       {{content.text}}
     </div>
   </div>
 
-  <div>
-    <button>
+  <div class="text-center">
+    <button class="btn btn-primary">
       <a routerLink="/edit/{{content.id}}">
         수정하기
       </a>
     </button>
   </div>
+
 </section>

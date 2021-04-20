@@ -36,19 +36,12 @@ const passportConfig = () =>{
         
     passport.use(new JWTStrategy(jwtOption,
         //JWT로 사용자 인증
-       
         async function(jwtPayload, cb){
             try{
                 console.log("JWT로 사용자 인증");
                 const userData = await UserModel.findById(jwtPayload._id)
-                // console.log(userData);
                 return cb(null, userData);
         
-                // return UserModel.findById(jwtPayload.id).then( (user:IUser) =>{
-                //     return cb(null, user);
-                // }).catch( (err:any) => {
-                //     console.log("aaa",err)
-                //     cb(err)} )
             }catch(err){
                 return cb(err)
             }
