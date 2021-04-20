@@ -21,7 +21,10 @@ export class ContentsListComponent implements OnInit {
   getContents():void{
     // this.contents = this.contentsService.getContents();
     this.contentsService.getContents().subscribe(
-      contents => this.contents = contents
+      contents =>{ 
+        console.log("getContents",contents)
+        this.contents = contents
+      }
     )
   }
 

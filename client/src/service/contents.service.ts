@@ -1,28 +1,28 @@
 import { Injectable } from '@angular/core';
 import {Content} from '../app/model/content';
-import {Observable, of} from 'rxjs';
-
+import {Observable, of, from} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class ContentsService {
   contents : Content[] = [
     {
-      id:"1",
+      _id:"1",
       title: "test title",
       date: new Date("2021-01-01"),
       text: "test text blahblah",
       userId: "11"
     },
     {
-      id:"2",
+      _id:"2",
       title: "test title 2",
       date: new Date("2021-01-02"),
       text: "test text blahblah 2",
       userId: "12"
     },
     {
-      id:"3",
+      _id:"3",
       title: "test title 3",
       date: new Date("2021-01-03"),
       text: "test text blahblah 3",
@@ -30,14 +30,17 @@ export class ContentsService {
     },
   ] 
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
+  URL ='http://localhost:8000/contents'
 
   getContents():Observable<Content[]>{
-    return of(this.contents);
+     return this.http.get<Content[]>(`${this.URL}`);
   }
 
   getContent(id:string):Observable<Content>{
-    return of(this.contents.find(content=> content.id===id))
+    return this.http.get<Content>(`${this.URL}/${id}`)
   }
 
   //need token?
@@ -48,7 +51,7 @@ export class ContentsService {
 
   editContent(id,data):void{
     for(let content of this.contents){
-      if(content.id ===id){
+      if(content._id ===id){
         content = data;
       }
     }
@@ -56,7 +59,7 @@ export class ContentsService {
   }
 
   deleteContent(id):void{
-    this.contents = this.contents.filter( content => content.id !==id)
+    this.contents = this.contents.filter( content => content._id !==id)
   }
 
 }

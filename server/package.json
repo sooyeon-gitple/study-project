@@ -5,7 +5,9 @@
   "author": "soo yeon",
   "license": "MIT",
   "dependencies": {
+    "@types/cors": "^2.8.10",
     "@types/passport-jwt": "^3.0.5",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",

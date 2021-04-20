@@ -6,6 +6,7 @@ import passportConfig from './src/config/passport';
 import login from './src/login'
 import auth from './src/auth';
 import getTop5 from './src/config/summarizer';
+import cors from 'cors';
 
 import {UserModel} from './src/model/users';
 import {ContentsModel,ContensSchema} from './src/model/contents';
@@ -19,6 +20,12 @@ app.use(express.json()); //body-parser 대신
 app.use(morgan('dev'));
 app.use(methodOverride());
 app.use(passport.initialize())
+
+var corsOptions = {
+    origin: 'http://localhost:8000/',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
+app.use(cors())
 passportConfig();
 
 app.post('/login',login);

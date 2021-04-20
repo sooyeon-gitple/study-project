@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="content">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">
@@ -19,7 +19,7 @@
 
   <div class="text-center">
     <button class="btn btn-primary">
-      <a routerLink="/edit/{{content.id}}">
+      <a routerLink="/edit/{{content._id}}">
         수정하기
       </a>
     </button>
