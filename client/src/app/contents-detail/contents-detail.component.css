@@ -1,8 +1,9 @@
-.btn.btn-primary>a{
-    color:#fff;
+div.text-center{
+    margin-top: 20px;
 }
-.btn.btn-primary>a:hover{
-    text-decoration: none;
+
+div.text-center >a{
+    margin: 10px;
 }
 
 h3{

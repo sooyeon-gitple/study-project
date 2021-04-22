@@ -1,27 +1,222 @@
-<section>
-    <h1 class="page-header">Study Project 👾 </h1>
-    <!-- <img src={{image}} alt=""> -->
+<section class="jumbotron">
+  <h1 class="page-header">Study Project 👾 </h1>
+  <!-- <img src={{image}} alt=""> -->
 
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <ul>
-                <li>
-                    사용자 인증
-                    <ul>
-                        <li>회원가입, 로그인, 로그아웃</li>
-                    </ul>
-                </li>
-                <li>
-                    콘텐츠 관리(블로그 post)
-                    <ul>
-                        <li>조회, 등록, 갱신, 삭제</li>
-                    </ul>
-                </li>
-                <li>
-                    전체 콘텐츠 키워드 TOP 5
-                </li>
-            </ul>
-        </div>
+  <div class="card ">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="true">시나리오 </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">실제로 생각해본 시나리오</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">고민한 것</a>
+        </li>
+      </ul>
     </div>
-    
+
+    <div class="card-body">
+      <h5 class="card-title">🖌 시나리오</h5>
+      <div class="card-text">
+        <ul>
+          <li>
+            사용자 인증
+            <ul>
+              <li>회원가입, 로그인, 로그아웃</li>
+            </ul>
+          </li>
+
+          <li>
+            콘텐츠 관리(블로그 post)
+            <ul>
+              <li>조회, 등록, 갱신, 삭제</li>
+            </ul>
+          </li>
+
+          <li>
+            전체 콘텐츠 키워드 TOP 5
+          </li>
+        </ul>
+
+        <h5>Client</h5>
+        <ul>
+          <li>angular</li>
+          <li>bootstrap, ngx-bootstrap</li>
+        </ul>
+
+        <h5>Server</h5>
+        <ul>
+          <li>express: Server</li>
+          <li>node-restful: Rest APIs</li>
+          <li>mongoDB(mongoose) : Database</li>
+          <li>redis : Cache for REST APIs</li>
+          <li>passport & jwt : Auth</li>
+        </ul>
+
+        <h5>Common</h5>
+        <ul>
+          <li>yarn: package managements</li>
+          <li>lodash: utils</li>
+          <li>node-summarizer: summarizes text</li>
+          <li>README.md: client, server markdown documents</li>
+        </ul>
+      </div>
+      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+
+    <div class="card-body">
+      <h5 class="card-title"> 🧐 (실제로 생각해본) 시나리오</h5>
+      <div class="card-text">
+        <h5>client</h5>
+        <h6>(만들어야 할 페이지)</h6>
+        <ul>
+          <li>메인화면..?</li>
+          <li>메뉴 (각 페이지로 가는 링크 + 로그아웃 버튼) </li>
+          <li>글 리스트 보여주기 (+ 클릭시 상세페이지로 가는 링크) </li>
+          <li>글 상세 페이지 보여주기 + 글 수정 삭제 버튼</li>
+          <li>새 글 쓰기 / 수정하기 폼 (생긴거 똑같음)</li>
+          <li>로그인</li>
+          <li>회원가입</li>
+        </ul>
+        <ul>
+          기타
+          <li> 로그인 하지 않은 유저는 새 글 쓰기 불가</li>
+          <li> 글 상세페이지에서 자기가 쓴 글에만 수정 삭제 버튼 노출 </li>
+        </ul>
+
+        <hr />
+
+        <h5>server</h5>
+        <h6>(만들어야 할 api)</h6>
+        <ul>
+          *표시: jwt 있어야 함
+          <li>로그아웃 POST /logout</li>
+          <li>로그인 POST /login</li>
+          <li>회원 가입 POST /users</li>
+          <li>회원 조회 GET/users</li>
+          <li>콘텐츠 삭제 DELETE /content/:id *</li>
+          <li>콘텐츠 1개 조회(id로) GET /content/:id</li>
+          <li>콘텐츠 수정 PUT /content/:id *</li>
+          <li>새 콘텐츠 등록 POST /contents *</li>
+          <li>리스트 조회 GET /contents</li>
+          <li>상위 워드5개 조회 GET /top-5</li>
+        </ul>
+        <ul>
+          기타
+          <li> 콘텐츠 등록 / 수정 전 토큰으로 유저 확인하기</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- <div class="panel panel-default">
+    <div class="panel-body">
+      <h4> 🖌 시나리오 </h4>
+      <hr />
+      <ul>
+        <li>
+          사용자 인증
+          <ul>
+            <li>회원가입, 로그인, 로그아웃</li>
+          </ul>
+        </li>
+
+        <li>
+          콘텐츠 관리(블로그 post)
+          <ul>
+            <li>조회, 등록, 갱신, 삭제</li>
+          </ul>
+        </li>
+
+        <li>
+          전체 콘텐츠 키워드 TOP 5
+        </li>
+      </ul>
+      <h5>Client</h5>
+      <ul>
+        <li>angular</li>
+        <li>bootstrap, ngx-bootstrap</li>
+      </ul>
+
+      <h5>Server</h5>
+      <ul>
+        <li>express: Server</li>
+        <li>node-restful: Rest APIs</li>
+        <li>mongoDB(mongoose) : Database</li>
+        <li>redis : Cache for REST APIs</li>
+        <li>passport & jwt : Auth</li>
+      </ul>
+
+      <h5>Common</h5>
+      <ul>
+        <li>yarn: package managements</li>
+        <li>lodash: utils</li>
+        <li>node-summarizer: summarizes text</li>
+        <li>README.md: client, server markdown documents</li>
+      </ul>
+
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h4> 🧐 (실제로 생각해본) 시나리오 </h4>
+      <hr />
+
+      <h5>client</h5>
+      <h6>(만들어야 할 페이지)</h6>
+      <ul>
+        <li>메인화면..?</li>
+        <li>메뉴 (각 페이지로 가는 링크 + 로그아웃 버튼) </li>
+        <li>글 리스트 보여주기 (+ 클릭시 상세페이지로 가는 링크) </li>
+        <li>글 상세 페이지 보여주기 + 글 수정 삭제 버튼</li>
+        <li>새 글 쓰기 / 수정하기 폼 (생긴거 똑같음)</li>
+        <li>로그인</li>
+        <li>회원가입</li>
+      </ul>
+      <ul>
+        기타
+        <li> 로그인 하지 않은 유저는 새 글 쓰기 불가</li>
+        <li> 글 상세페이지에서 자기가 쓴 글에만 수정 삭제 버튼 노출 </li>
+      </ul>
+
+      <hr />
+
+      <h5>server</h5>
+      <h6>(만들어야 할 api)</h6>
+      <ul>
+        *표시: jwt 있어야 함
+        <li>로그아웃 POST /logout</li>
+        <li>로그인 POST /login</li>
+        <li>회원 가입 POST /users</li>
+        <li>회원 조회 GET/users</li>
+        <li>콘텐츠 삭제 DELETE /content/:id *</li>
+        <li>콘텐츠 1개 조회(id로) GET /content/:id</li>
+        <li>콘텐츠 수정 PUT /content/:id *</li>
+        <li>새 콘텐츠 등록 POST /contents *</li>
+        <li>리스트 조회 GET /contents</li>
+        <li>상위 워드5개 조회 GET /top-5</li>
+      </ul>
+      <ul>
+        기타
+        <li> 콘텐츠 등록 / 수정 전 토큰으로 유저 확인하기</li>
+      </ul>
+
+
+      <hr />
+
+      <h5>고민한 것</h5>
+      <ul>
+        <li></li>
+      </ul>
+
+
+
+
+    </div>
+  </div> -->
+
 </section>

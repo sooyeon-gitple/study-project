@@ -12,7 +12,7 @@ import {GlobalState} from './global-state.service';
 
 export class AppComponent implements OnInit{
   
-  user :User = {token: "", userId:"", message:"test test"};
+  userData :User;
   title = 'study-project';
 
   constructor(
@@ -22,27 +22,36 @@ export class AppComponent implements OnInit{
   ){}
   
   ngOnInit(): void {
-    // const localUserId =  `${localStorage.get("userId")}`;
-    // const localUserToken =`${localStorage.get("token")}`;
-    // const userData = this.userService.getUserData(localUserId, localUserToken); //실제로는 async
-
+    const localUserToken =`${localStorage.getItem("gitple_token")}`;
+   
+    // Validate Token
+    if(localUserToken){
+      this.userService.getUserData(localUserToken).subscribe(
+        res => { 
+          const userData = {userId:res.userId, token:localUserToken};
+          this.userData = userData
+          this._state.notify('login',userData);
+        }
+      )
+    }
+    
     this._state.subscribe('login', (userData) => {
       // NOTE: setTimeout for ExpressionChangedAfterItHasBeenCheckedError
       setTimeout(() => {
-        this.user = {...userData};
-        console.log(this.user)
+        this.userData = userData;
       });
     });
   }
   
 
   onLogout(){
-  
     const confirm = window.confirm('로그아웃 하시겠습니까?');
-    confirm && this.userService.logout(this.user.userId, this.user.token);
-    confirm && this.router.navigate(['/login']);
-    // localStorage.removeItem('userId');
-    // localStorage.removeItem('token');
+    if(confirm){
+      this.userData = null; //Clear userData in app component
+      this._state.notify('login',null); //Clear global state(login)
+      localStorage.removeItem('gitple_token');
+      this.router.navigate(['/login']);
+    }
   }
   
 }

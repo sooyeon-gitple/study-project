@@ -1,3 +1,26 @@
 li{
     list-style:none;
 }
+
+table{
+    max-width: 800px;
+}
+
+tr >th{
+    text-align:center;
+}
+
+/* for spinner */
+
+.loader-wrapper{
+    position: relative;
+    margin-top:200px;
+}
+
+.loader-text{
+    color: #8ad1ba;
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%)
+}

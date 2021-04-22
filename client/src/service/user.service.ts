@@ -3,6 +3,8 @@ import {Join} from '../app/model/join';
 import {User} from '../app/model/user';
 import {Observable, of} from 'rxjs';
 import {GlobalState} from '../app/global-state.service';
+import {HttpClient} from '@angular/common/http';
+import { catchError, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +14,13 @@ export class UserService {
     {
       userId: "nana",
       password:"nana",
+      passwordConfirm: "nana",
       joinedDate: new Date("2020-01-01"),
-
     },
     {
       userId: "mango",
       password:"mango",
+      passwordConfirm: "mango",
       joinedDate: new Date("2020-01-02")
     },
   ]
@@ -26,8 +29,10 @@ export class UserService {
 
   constructor(
     private _state: GlobalState,
+    private http: HttpClient
   ) { }
 
+  URL = 'http://localhost:8000';
 
 
   checkIdValid(id:string):boolean{
@@ -35,27 +40,17 @@ export class UserService {
   }
 
   join(userData):Observable<Join>{
-    this.userList = [...this.userList, userData];
-    console.log(this.userList)
-    return userData;
+    return this.http.post<Join>(`${this.URL}/users`, userData).pipe(
+      tap( newUser =>console.log("HERE",newUser) ),
+      catchError( this.handleError<Join>('Join new User'))
+    )
   }
 
-  login(userId:string, password:string){
-    const selectedUser = this.userList.find(user => user.userId ===userId);
-
-    if(selectedUser){
-      this._state.notify('login', {
-        userId: userId,
-        token: "fake token",   
-        message: "success"           
-      });
-    }else{
-      this._state.notify('login', {
-        userId: "",
-        token: "",
-        message: "failed"
-      });
-    }
+  login(userId:string, password:string):Observable<User>{
+    return this.http.post<User>(`${this.URL}/login`, {userId, password})
+    .pipe(
+      catchError( this.handleError<User>('Login'))
+    );
   }
 
   logout(userId:string, token:string){
@@ -65,12 +60,11 @@ export class UserService {
     });
   }
 
-
-  getUserData(userId:string, token:string){
-    return this.userList.find( user => user.userId ===userId);
+  getUserData(token:string):Observable<User>{
+    return this.http.get<User>(`${this.URL}/auth`,{
+      headers: {'Authorization':`Bearer ${token}`}
+    })
   }
-
-
 
   private handleError<T>(operation='operation',result?:T){
     return (error:any): Observable<T> =>{

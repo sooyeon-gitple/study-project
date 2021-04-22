@@ -9,7 +9,6 @@ const login = (req:express.Request, res:express.Response, next:express.NextFunct
         'local',
         {session: false}, 
         (err, user, info)=>{
-            console.log(info,user,err)
             
              if(err|| !user){
                  return res.status(400).json({
@@ -24,7 +23,10 @@ const login = (req:express.Request, res:express.Response, next:express.NextFunct
                 }
     
                 const token = jwt.sign(user.toJSON(), KEY, {expiresIn:"12h"})
-                return res.json({user, token});
+                return res.json({
+                    userId:user.userId,
+                    token
+                });
              });
         })(req,res);
 }

@@ -1,52 +1,87 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <!-- <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-        data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" routerLink="/"> Main </a>
-    </div> -->
+    <a class="navbar-brand" routerLink="/">메인으로</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/contents-list">
+            글 목록
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/top-five">
+            키워드 Top 5
+          </a>
+        </li>
+        <li class="nav-item" [hidden]="!userData">
+          <a class="nav-link" routerLink="/post">
+            새 글 등록
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
+            Disabled
+          </a>
+        </li> -->
+      </ul>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
+      <span class="navbar-text">
+        <span *ngIf="userData">
+          {{userData?.userId}} 님, 환영합니다 !
+        </span>
+        <form class="container-fluid justify-content-start">
+          <button *ngIf="!userData" routerLink="/join" class="btn btn-sm btn-outline-secondary" type="button">
+            Join
+          </button>
+          <button *ngIf="userData" (click)="onLogout()" class="btn btn-sm btn-outline-secondary" type="button">
+            Logout
+          </button>
+          <button *ngIf="!userData" routerLink="/login" class="btn btn-sm btn-outline-success" type="button">
+            Login
+          </button>
+        </form>
+      </span>
+
+    </div>
+  </div>
+
+  <!--
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-
         <li>
           <a routerLink="/">메인으로 </a>
         </li>
-
         <li>
           <a routerLink="/contents-list">글 목록</a>
         </li>
         <li>
           <a routerLink="/top-five">키워드 Top 5</a>
         </li>
-        <li>
+        <li [hidden]="!userData">
           <a routerLink="/post">새 글 등록</a>
         </li>
       </ul>
-      <!-- <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form> -->
+
       <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="!user.userId"><a routerLink="/join">Join </a></li>
-        <li  *ngIf="!user.userId"><a routerLink="/login">Login</a></li>
-        <li *ngIf="user.userId"><a (click)="onLogout()">Logout</a></li>
+        <li *ngIf="userData">
+            <a class="text-success">
+              <span class="glyphicon glyphicon-user"></span>
+              {{userData?.userId}} 님, 환영합니다 !
+            </a>  
+        </li>
+        <li *ngIf="!userData"><a routerLink="/join">Join </a></li>
+        <li  *ngIf="!userData"><a routerLink="/login">Login</a></li>
+        <li *ngIf="userData"><a (click)="onLogout()">Logout</a></li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+
+    
+    </div> 
+  </div> 
+ -->
 </nav>
 
 <router-outlet></router-outlet>
-<!-- <app-join></app-join>
-<app-login></app-login>
-<app-contents></app-contents>
-<app-top-five></app-top-five> -->

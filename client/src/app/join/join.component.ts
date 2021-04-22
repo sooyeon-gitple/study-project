@@ -12,7 +12,8 @@ export class JoinComponent implements OnChanges {
   submitted:boolean = false;
   joinModel:Join = {
     userId: "", 
-    password: "string",
+    password: "",
+    passwordConfirm: "",
     joinedDate: new Date(),
   };
   idCheck = "ready"; //["ready", "pass", "fail"];
@@ -31,7 +32,6 @@ export class JoinComponent implements OnChanges {
 
 
   idValidCheck():void{
-    console.log(this.joinModel)
     const existId = this.userService.checkIdValid(this.joinModel.userId);
     if(existId){
       this.idCheck = "fail";
@@ -42,22 +42,35 @@ export class JoinComponent implements OnChanges {
 
 
   onSubmit():void{
-
-    console.log(this.joinModel)
-    
-    if(this.idCheck && this.joinModel.userId && this.joinModel.password){
-      if(window.confirm("회원 가입 하시겠습니까?")){
-        
-
-        const userData = {userId :this.joinModel.userId, password: this.joinModel.password};
-        this.userService.join(userData);
-        
-        window.alert("가입 되었습니다.")
-        this.submitted = true;
-      }
-    }else{
-      window.alert("아이디 중복 확인을 해주세요.")
+    if(this.idCheck !=="pass" || !this.joinModel.userId || !this.joinModel.password){
+      return  window.alert("아이디 중복 확인을 해주세요.");
     }
-  }
+
+    if(this.joinModel.password !== this.joinModel.passwordConfirm){
+      return window.alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.")
+    }
+
+    if(window.confirm("회원 가입 하시겠습니까?")){
+        
+      const userData = {
+        userId :this.joinModel.userId,
+        password: this.joinModel.password,
+        joinedDate: new Date()
+      };
+      
+      this.userService.join(userData).subscribe(
+        result =>{
+          if(result._id){
+            window.alert("가입 되었습니다.")
+            this.submitted = true;
+          }else{
+            window.alert("가입되지 않았습니다. 새로고침 후 다시 시도해주세요.")
+          }
+        });
+    }
+
+  }//onSubmit ends
+
+
 
 }

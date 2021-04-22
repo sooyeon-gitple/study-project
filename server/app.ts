@@ -16,10 +16,14 @@ const mongoose = restful.mongoose;
 const app = express();
 const PORT = "8000";
 
+// app.set('etag', false); 
+
 app.use(express.json()); //body-parser 대신
 app.use(morgan('dev'));
 app.use(methodOverride());
-app.use(passport.initialize())
+app.use(passport.initialize());
+
+// app.use(express.static('public',{etag:false}))
 
 var corsOptions = {
     origin: 'http://localhost:8000/',
@@ -29,6 +33,21 @@ app.use(cors())
 passportConfig();
 
 app.post('/login',login);
+
+//TODO: 별도 파일로 이동
+app.get('/auth',(req,res)=>{
+    auth(req,res,(user:any)=>{
+        if(!user){
+          return res.status(404).json({
+              message:"User Not Found"
+          })
+        }
+        return res.status(200).json({
+            userId : user.userId,
+            _id: user._id
+        })
+    })
+})
 
 
 
@@ -40,10 +59,12 @@ mongoose.connect("mongodb://root:mongodb@localhost:27017/gitple?authSource=admin
 UserModel.register(app,'/users'); //join, get user info
 ContentsModel.register(app,'/contents'); 
 
+
+
+  
 app.get('/top5',async(req,res)=> {
     let wordList = await getTop5();
-    
-    res.json(wordList)
+    res.status(200).json(wordList);
 })
 
 app.listen( PORT, ()=>{

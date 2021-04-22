@@ -1,6 +1,8 @@
 export interface Join{
+    _id?: string,
     userId: string, 
     password: string,
-    joinedDate: Date,
+    passwordConfirm: string,
+    joinedDate?: Date,
     message?: string
 }

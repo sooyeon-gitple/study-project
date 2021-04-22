@@ -7,73 +7,112 @@
 
   <div class="row" [hidden]="submitted">
     <form (ngSubmit)="onSubmit()" #joinForm="ngForm">
-      <div class="input-group ">
-        <span class="input-group-addon" id="sizing-addon2">
-          <span class="glyphicon glyphicon-user"></span>
-        </span>
-        <input type="text" class="form-control" id="joinId" 
-                placeholder="아이디" 
-                required 
-                [(ngModel)]="joinModel.userId" name="joinId" 
-                (ngModelChange)="onChangeId(joinId)"
-                #joinId="ngModel"
-                
-        >
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button" (click)="idValidCheck()">
-            중복 확인
-          </button>
-        </span>
-      </div>
 
       <div>
+        <label for="joinId">아이디</label>
+
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">
+            <span class="glyphicon glyphicon-user"></span>
+          </span>
+          <input type="text" class="form-control" id="joinId" 
+            placeholder="myId0123" 
+            required
+            [(ngModel)]="joinModel.userId" name="joinId" 
+            (ngModelChange)="onChangeId(joinId)" #joinId="ngModel">
+
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" (click)="idValidCheck()">
+              중복 확인
+            </button>
+          </span>
+        </div>
+
         <div [hidden]="joinId.valid || joinId.pristine">
+          <span class="glyphicon glyphicon-pencil"></span>
           아이디를 입력해주세요.
         </div>
-        <div [hidden]= "idCheck!=='ready' || joinId.pristine || joinId.invalid" class="text-warning">
-          아이디 중복 확인을 해주세요
+        <div [hidden]="joinId.pristine || joinModel.userId.length>3" class="text-warning">
+          <span class="glyphicon glyphicon-remove"></span>
+          아이디는 3글자 이상이어야합니다.
+        </div>
+
+        <div [hidden]="idCheck!=='ready' || joinId.pristine || joinId.invalid" class="text-warning">
+          <span class="glyphicon glyphicon-remove"></span>
+          아이디 중복 확인을 해주세요.
         </div>
         <div [hidden]="idCheck!=='fail'|| joinId.pristine" class="text-danger">
+          <span class="glyphicon glyphicon-remove"></span>
           이미 가입된 아이디입니다.
         </div>
         <div [hidden]="idCheck!=='pass'|| joinId.pristine" class="text-success">
+          <span class="glyphicon glyphicon-ok"></span>
           사용 가능한 아이디입니다.
         </div>
       </div>
 
-      <div class="input-group">
-        <span class="input-group-addon" id="sizing-addon2">
-          <span class="glyphicon glyphicon-lock"></span>
-        </span>
-        <input type="password" class="form-control" id="joinPassword" placeholder="비밀번호" 
-              required
-              aria-describedby="sizing-addon2"
-              [(ngModel)]="joinModel.password" name="joinPassword"
-              #joinPassword = "ngModel"
-        >
+
+      <div>
+        <label for="joinPassword">비밀번호</label>
+
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">
+            <span class="glyphicon glyphicon-lock"></span>
+          </span>
+          <input type="password" class="form-control" id="joinPassword" required
+            aria-describedby="sizing-addon2" [(ngModel)]="joinModel.password" name="joinPassword"
+            #joinPassword="ngModel">
+        </div>
+
+        <div [hidden]="joinPassword.valid || joinPassword.pristine">
+          비밀번호를 입력해주세요.
+        </div>
       </div>
 
-      <div [hidden]="joinPassword.valid || joinPassword.pristine">
-        비밀번호를 입력해주세요.
+      <div>
+        <label for="joinPassword">비밀번호 확인</label>
+
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">
+            <span class="glyphicon glyphicon-lock"></span>
+          </span>
+          <input type="password" class="form-control" id="joinPassword-confirm" 
+            required 
+            aria-describedby="sizing-addon2" [(ngModel)]="joinModel.passwordConfirm" name="joinPasswordConfirm"
+            #joinPasswordConfirm="ngModel">
+        </div>
+
+        <div [hidden]="joinPasswordConfirm.valid || joinPasswordConfirm.pristine">
+          비밀번호를 한 번 더 입력해주세요.
+        </div>
+        <div [hidden]="(joinPassword.value === joinPasswordConfirm.value) || 
+              joinPasswordConfirm.pristine" class="text-warning">
+              <span class="glyphicon glyphicon-remove"></span>
+          비밀번호와 비밀번호 확인이 일치하지 않습니다.
+        </div>
       </div>
 
       <div class="text-center" role="group" aria-label="...">
         <button type="submit" class="btn btn-lg btn-block btn-primary" 
-                [disabled]="!joinForm.form.valid"
-        >
-           회원 가입
-          </button>
+        [disabled]="!joinForm.form.valid">
+          회원 가입
+        </button>
       </div>
     </form>
   </div>
 
-  <div class="row" [hidden]="!submitted">
-    회원 가입 완료!
-    
-    <button routerLink="/">
-      홈으로
-    </button>
-  </div>
+  <section class="text-center" [hidden]="!submitted" role="group">
+    <h3>
+      회원 가입 완료! 🎉
+    </h3>
+
+    <div>
+      <a routerLink="/login" class="btn btn-success">
+        로그인 하러 가기
+      </a>
+    </div>
+
+  </section>
 
 
 </section>

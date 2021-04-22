@@ -26,28 +26,31 @@ export const ContentsModel = restful.model(
 .before('post',(req:Request,res:Response,next:NextFunction)=>{
  
     auth(req,res,(user:any)=>{
-        console.log(user)
         next();
     });
    
 }).before('put',async(req:Request,res:Response,next:NextFunction)=>{
 
-    auth(req,res, (user:any)=>{
+    auth(req,res, async(user:any)=>{
     
-        if(user.userId !== req.body.userId){
+        const content = await ContentsModel.findOne({_id:req.params.id})
+
+        if(user.userId !== content.userId){
             console.log("user Id not match");
             return res.status(402).json({
                 message: "Wrong User Id"
             })
-        } 
+        }
         next();
     })
 
 }).before('delete',(req:Request,res:Response,next:NextFunction)=>{
 
-    auth(req,res, (user:any)=>{
-    
-        if(user.userId !== req.body.userId){
+    auth(req,res, async(user:any)=>{
+
+        const content = await ContentsModel.findOne({_id:req.params.id})
+
+        if(user.userId !== content.userId){
             console.log("user Id not match");
             return res.status(402).json({
                 message: "Wrong User Id"

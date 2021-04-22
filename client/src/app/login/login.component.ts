@@ -14,7 +14,7 @@ import {GlobalState} from '../global-state.service';
 export class LoginComponent implements OnInit {
 
   submitted:boolean = false;
-  loginUser:User = {userId:"", token:"", message:""}
+  loginUser:User = {userId:"",password:"",token:""}; //for login form
 
   constructor(
     private userService: UserService,
@@ -23,25 +23,21 @@ export class LoginComponent implements OnInit {
   ){}
   
 
-  ngOnInit(): void {
-    this._state.subscribe('login', (userData) => {
-      setTimeout(() => {
-        if(userData.token && userData.message==="success"){
-          window.alert("로그인 되었습니다.");
-          // localStorage.setItem("userName","test user name")
-          this.router.navigate(['/contents-list']);
-          return;
-        }else if(userData.message==="failed"){
-          return window.alert("로그인 실패!");
-        }
-      });
-    
-    });
-  }
+  ngOnInit(): void {  }
 
   onSubmit():void{
-    console.log("login submit")
-    this.userService.login(this.loginUser.userId, this.loginUser.password);
+    this.userService.login(this.loginUser.userId, this.loginUser.password)
+    .subscribe( (loginData:User) => {
+      if(loginData){
+        window.alert("로그인 되었습니다 🙌")
+        localStorage.setItem("gitple_token",loginData.token);
+        this._state.notify('login',loginData);
+        this.router.navigate(['/contents-list']);
+      }else{
+        window.alert("로그인 실패 😫 : 아이디와 비밀번호를 확인해주세요.")
+        this._state.notify('login',null)
+      }
+    })
   }
 
 }

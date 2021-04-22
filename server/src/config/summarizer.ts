@@ -6,10 +6,10 @@ let SummarizerManager = require("node-summarizer").SummarizerManager;
 // number_of_sentences: is an Int of how many sentences you want in the summary.
 
 const number_of_sentences = 1;
-let text_to_summarize = "";
+
 
 const getTop5 = async () =>{
-
+    let text_to_summarize = "";
     // contents 의 모든 title, text 모아서 string 으로
     for await (const doc of ContentsModel.find()){
         text_to_summarize = `${text_to_summarize}${doc.title}${doc.text}`

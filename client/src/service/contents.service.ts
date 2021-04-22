@@ -33,7 +33,7 @@ export class ContentsService {
   constructor(
     private http: HttpClient
   ) { }
-  URL ='http://localhost:8000/contents'
+  URL ='http://localhost:8000/contents';
 
   getContents():Observable<Content[]>{
      return this.http.get<Content[]>(`${this.URL}`);
@@ -43,23 +43,22 @@ export class ContentsService {
     return this.http.get<Content>(`${this.URL}/${id}`)
   }
 
-  //need token?
-  postNewContent(data):Observable<Content>{
-    this.contents = [...this.contents, data]
-    return data;
+  postNewContent(token:string,data:Content):Observable<Content>{
+    return this.http.post<Content>(`${this.URL}`,data,{
+      headers: {'Authorization':`Bearer ${token}`},
+    })
   }
 
-  editContent(id,data):void{
-    for(let content of this.contents){
-      if(content._id ===id){
-        content = data;
-      }
-    }
-    console.log(this.contents);
+  editContent(token,data):Observable<Content>{
+    return this.http.put<Content>(`${this.URL}/${data._id}`,data,{
+      headers: {'Authorization':`Bearer ${token}`},
+    })
   }
 
-  deleteContent(id):void{
-    this.contents = this.contents.filter( content => content._id !==id)
+  deleteContent(token,id):Observable<Content>{
+    return this.http.delete<Content>(`${this.URL}/${id}`,{
+      headers: {'Authorization':`Bearer ${token}`},
+    })
   }
 
 }

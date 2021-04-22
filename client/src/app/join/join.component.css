@@ -2,3 +2,11 @@ div.row>form>div{
     max-width: 500px;
     margin: 20px auto;
 }
+
+input{
+    padding: 18px;
+}
+
+.btn.btn-default{
+ border: solid 1px #adadad;   
+}
