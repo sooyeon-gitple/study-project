@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  image = 'https://picsum.photos/id/1011/900/500';
+  tapIndex:number = 0;
 
   constructor() {
 
@@ -16,6 +16,10 @@ export class MainComponent implements OnInit {
 
 
   ngOnInit(): void {
+  }
+
+  onClickTap(index:number){
+    this.tapIndex = index;
   }
 
 }

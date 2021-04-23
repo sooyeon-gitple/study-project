@@ -22,17 +22,13 @@
             새 글 등록
           </a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
-            Disabled
-          </a>
-        </li> -->
-      </ul>
 
+      </ul>
+      <span *ngIf="userData" class="navbar-text">
+        {{userData?.userId}} 님, 환영합니다 !
+      </span>
       <span class="navbar-text">
-        <span *ngIf="userData">
-          {{userData?.userId}} 님, 환영합니다 !
-        </span>
+
         <form class="container-fluid justify-content-start">
           <button *ngIf="!userData" routerLink="/join" class="btn btn-sm btn-outline-secondary" type="button">
             Join
@@ -49,39 +45,6 @@
     </div>
   </div>
 
-  <!--
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li>
-          <a routerLink="/">메인으로 </a>
-        </li>
-        <li>
-          <a routerLink="/contents-list">글 목록</a>
-        </li>
-        <li>
-          <a routerLink="/top-five">키워드 Top 5</a>
-        </li>
-        <li [hidden]="!userData">
-          <a routerLink="/post">새 글 등록</a>
-        </li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="userData">
-            <a class="text-success">
-              <span class="glyphicon glyphicon-user"></span>
-              {{userData?.userId}} 님, 환영합니다 !
-            </a>  
-        </li>
-        <li *ngIf="!userData"><a routerLink="/join">Join </a></li>
-        <li  *ngIf="!userData"><a routerLink="/login">Login</a></li>
-        <li *ngIf="userData"><a (click)="onLogout()">Logout</a></li>
-      </ul>
-
-    
-    </div> 
-  </div> 
- -->
 </nav>
 
 <router-outlet></router-outlet>

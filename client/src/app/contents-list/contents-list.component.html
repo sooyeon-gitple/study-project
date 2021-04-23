@@ -1,18 +1,18 @@
 <section>
   <div class="page-header">
-    <h1>Contents
-        <small>전체 콘텐츠 리스트</small>
-    </h1>
-</div>
+    <h2>Contents
+      <small class="text-muted h5">전체 콘텐츠 리스트</small>
+    </h2>
+  </div>
 
-  <ul class="list-group">
-    <li *ngFor="let content of contents" class="list-group-item col-md-12">
-        <h4 class="col-md-9">
+  <ul class="container list-group">
+    <li *ngFor="let content of contents" class="list-group-item row">
+        <h4 class="col-10">
           <a routerLink="/content/{{content._id}}">
             {{content.title}}
           </a> 
         </h4>
-        <div class="col-md-3"> 
+        <div class="col text-muted"> 
           {{content.date |date:"yyyy/MM/dd"}} |  {{content.userId}}
         </div>
     </li>

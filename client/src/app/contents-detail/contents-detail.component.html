@@ -1,29 +1,29 @@
 <section *ngIf="content">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">
+  <div class="card">
+    <div class="card-header">
+      <h3 >
         {{content.title}}
       </h3>
       <span class="date">
-        {{content.date | date:"yyyy/MM/dd"}}
+        {{content.date | date:"yyyy/MM/dd"}} 
+      </span>
+      <span class="text-right text-muted">
+       | 작성자 : {{content.userId}}
       </span>
     </div>
 
-    <div class="panel-body">
-      <div class="text-right">
-        ID : {{content.userId}}
-      </div>
+    <div class="card-body">
       {{content.text}}
     </div>
   </div>
 
   <div class="text-center">
 
-    <a routerLink="/contents-list" class="btn btn-default">
+    <a routerLink="/contents-list" role="button" class="btn btn-secondary">
       목록으로
     </a>
 
-    <a [hidden]="!isWritter" routerLink="/edit/{{content._id}}" class="btn btn-warning">
+    <a [hidden]="!isWritter" role="button" routerLink="/edit/{{content._id}}" class="btn btn-warning">
       수정 / 삭제 하기
     </a>
 

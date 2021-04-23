@@ -1,110 +1,68 @@
 <section>
   <div class="page-header">
-    <h1>Join
-      <small>회원 가입</small>
-    </h1>
+    <h2>Join
+      <small class="text-muted h5">회원 가입</small>
+    </h2>
   </div>
 
-  <div class="row" [hidden]="submitted">
-    <form (ngSubmit)="onSubmit()" #joinForm="ngForm">
 
-      <div>
-        <label for="joinId">아이디</label>
+  <form (ngSubmit)="onSubmit()" #joinForm="ngForm" [hidden]="submitted">
 
-        <div class="input-group">
-          <span class="input-group-addon" id="sizing-addon2">
-            <span class="glyphicon glyphicon-user"></span>
-          </span>
-          <input type="text" class="form-control" id="joinId" 
-            placeholder="myId0123" 
-            required
-            [(ngModel)]="joinModel.userId" name="joinId" 
-            (ngModelChange)="onChangeId(joinId)" #joinId="ngModel">
+    <div class="input-group mb-3 input-group-sm">
+      <input type="text" class="form-control" placeholder="아이디" required [(ngModel)]="joinModel.userId" name="joinId"
+        (ngModelChange)="onChangeId(joinId)" #joinId="ngModel">
+      <button class="btn btn-outline-secondary" type="button" (click)="idValidCheck()">
+        중복 확인
+      </button>
+    </div>
 
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button" (click)="idValidCheck()">
-              중복 확인
-            </button>
-          </span>
-        </div>
+    <div [hidden]="joinId.valid || joinId.pristine" class="form-text">
+      아이디를 입력해주세요.
+    </div>
+    <div [hidden]="joinId.pristine || joinModel.userId.length>3" class="form-text text-warning">
+      아이디는 3글자 이상이어야합니다.
+    </div>
+    <div [hidden]="idCheck!=='ready' || joinId.pristine || joinId.invalid" class="form-text text-warning">
+      아이디 중복 확인을 해주세요.
+    </div>
+    <div [hidden]="idCheck!=='fail'|| joinId.pristine" class="form-text text-danger">
+      이미 가입된 아이디입니다.
+    </div>
+    <div [hidden]="idCheck!=='pass'|| joinId.pristine" class="form-text text-success">
+      사용 가능한 아이디입니다.
+    </div>
 
-        <div [hidden]="joinId.valid || joinId.pristine">
-          <span class="glyphicon glyphicon-pencil"></span>
-          아이디를 입력해주세요.
-        </div>
-        <div [hidden]="joinId.pristine || joinModel.userId.length>3" class="text-warning">
-          <span class="glyphicon glyphicon-remove"></span>
-          아이디는 3글자 이상이어야합니다.
-        </div>
+    <div class="input-group mb-3 input-group-sm">
+      <input type="password" class="form-control" placeholder="비밀번호" id="joinPassword" required
+        [(ngModel)]="joinModel.password" name="joinPassword" #joinPassword="ngModel">
+    </div>
+    <div [hidden]="joinPassword.valid || joinPassword.pristine">
+      비밀번호를 입력해주세요.
+    </div>
 
-        <div [hidden]="idCheck!=='ready' || joinId.pristine || joinId.invalid" class="text-warning">
-          <span class="glyphicon glyphicon-remove"></span>
-          아이디 중복 확인을 해주세요.
-        </div>
-        <div [hidden]="idCheck!=='fail'|| joinId.pristine" class="text-danger">
-          <span class="glyphicon glyphicon-remove"></span>
-          이미 가입된 아이디입니다.
-        </div>
-        <div [hidden]="idCheck!=='pass'|| joinId.pristine" class="text-success">
-          <span class="glyphicon glyphicon-ok"></span>
-          사용 가능한 아이디입니다.
-        </div>
-      </div>
+    <div class="input-group mb-3 input-group-sm">
+      <input type="password" class="form-control" placeholder="비밀번호 확인" required name="joinPasswordConfirm"
+        [(ngModel)]="joinModel.passwordConfirm" #joinPasswordConfirm="ngModel">
+    </div>
 
-
-      <div>
-        <label for="joinPassword">비밀번호</label>
-
-        <div class="input-group">
-          <span class="input-group-addon" id="sizing-addon2">
-            <span class="glyphicon glyphicon-lock"></span>
-          </span>
-          <input type="password" class="form-control" id="joinPassword" required
-            aria-describedby="sizing-addon2" [(ngModel)]="joinModel.password" name="joinPassword"
-            #joinPassword="ngModel">
-        </div>
-
-        <div [hidden]="joinPassword.valid || joinPassword.pristine">
-          비밀번호를 입력해주세요.
-        </div>
-      </div>
-
-      <div>
-        <label for="joinPassword">비밀번호 확인</label>
-
-        <div class="input-group">
-          <span class="input-group-addon" id="sizing-addon2">
-            <span class="glyphicon glyphicon-lock"></span>
-          </span>
-          <input type="password" class="form-control" id="joinPassword-confirm" 
-            required 
-            aria-describedby="sizing-addon2" [(ngModel)]="joinModel.passwordConfirm" name="joinPasswordConfirm"
-            #joinPasswordConfirm="ngModel">
-        </div>
-
-        <div [hidden]="joinPasswordConfirm.valid || joinPasswordConfirm.pristine">
-          비밀번호를 한 번 더 입력해주세요.
-        </div>
-        <div [hidden]="(joinPassword.value === joinPasswordConfirm.value) || 
+    <div [hidden]="joinPasswordConfirm.valid || joinPasswordConfirm.pristine">
+      비밀번호를 한 번 더 입력해주세요.
+    </div>
+    <div [hidden]="(joinPassword.value === joinPasswordConfirm.value) || 
               joinPasswordConfirm.pristine" class="text-warning">
-              <span class="glyphicon glyphicon-remove"></span>
-          비밀번호와 비밀번호 확인이 일치하지 않습니다.
-        </div>
-      </div>
+      <span class="glyphicon glyphicon-remove"></span>
+      비밀번호와 비밀번호 확인이 일치하지 않습니다.
+    </div>
 
-      <div class="text-center" role="group" aria-label="...">
-        <button type="submit" class="btn btn-lg btn-block btn-primary" 
-        [disabled]="!joinForm.form.valid">
-          회원 가입
-        </button>
-      </div>
-    </form>
-  </div>
+    <div class="text-center" role="group" aria-label="...">
+      <button type="submit" class="btn btn-lg btn-block btn-primary" [disabled]="!joinForm.form.valid">
+        회원 가입
+      </button>
+    </div>
+  </form>
 
   <section class="text-center" [hidden]="!submitted" role="group">
-    <h3>
-      회원 가입 완료! 🎉
-    </h3>
+    <h3> 회원 가입 완료! 🎉</h3>
 
     <div>
       <a routerLink="/login" class="btn btn-success">
@@ -113,6 +71,5 @@
     </div>
 
   </section>
-
 
 </section>

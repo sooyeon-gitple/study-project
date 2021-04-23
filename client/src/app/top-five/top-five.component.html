@@ -1,37 +1,40 @@
 <section>
   <div class="page-header">
-    <h1>Top 5
-      <small>전체 콘텐츠 중 최다 등장 키워드 Top 5</small>
-    </h1>
+    <h2>Top 5
+      <small class="text-muted h5">전체 콘텐츠 중 최다 등장 키워드 Top 5</small>
+    </h2>
+  </div>
+
+  <div *ngIf="loading">
+    <div class="loader-text">
+      불러오는 중...🧚
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <div class="spinner-grow text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
   </div>
 
 
-    <div *ngIf="loading">
-        <div class="loader-text">
-            불러오는 중...🧚
-          </div>
-        
-          <div class="d-flex justify-content-center">
-            <div class="spinner-grow text-success" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-          </div>
-    </div>
 
 
+  <table *ngIf="!loading" class="table text-center">
+    <thead>
+      <tr>
+        <th>순위</th>
+        <th>키워드</th>
+        <th>등장 횟수</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of top5List;let i=index" [class.text-primary]="i===0" [class.text-muted]="i!==0">
+        <td>{{i+1}}</td>
+        <td>{{item.keyword}}</td>
+        <td>{{item.frequency}}</td>
+      </tr>
+    </tbody>
 
-
-  <table *ngIf="!loading" class="table table-bordered text-center">
-    <tr>
-      <th>순위</th>
-      <th>키워드</th>
-      <th>등장 횟수</th>
-    </tr>
-
-    <tr *ngFor="let item of top5List;let i=index" [class.text-primary]="i===0" [class.text-muted]="i!==0">
-      <td>{{i+1}}</td>
-      <td>{{item.keyword}}</td>
-      <td>{{item.frequency}}</td>
-    </tr>
   </table>
 </section>

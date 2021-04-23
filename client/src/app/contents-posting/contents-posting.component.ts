@@ -119,7 +119,6 @@ export class ContentsPostingComponent implements OnInit {
         }
       }
     )
-
   }
 
   editContent():void{

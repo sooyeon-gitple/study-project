@@ -1,4 +1,4 @@
-div.row>form>div{
-    max-width: 500px;
-    margin: 20px auto;
+form{
+    max-width: 400px;
+    margin: 0 auto;
 }
