@@ -12,6 +12,7 @@ export class ContentsListComponent implements OnInit {
   contents: Content[];
   // model = new Content( "21", "test title 555", new Date("2021-01-05"),"text text","211");
   
+  //TODO: angular life cycle 확인 
   constructor( private contentsService: ContentsService) { }
 
   ngOnInit(): void {

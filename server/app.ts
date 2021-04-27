@@ -8,7 +8,7 @@ import auth from './src/auth';
 import getTop5 from './src/config/summarizer';
 import cors from 'cors';
 
-import {UserModel} from './src/model/users';
+import {UserModel,checkIdValid} from './src/model/users';
 import {ContentsModel,ContensSchema} from './src/model/contents';
 const restful = require('node-restful');
 const mongoose = restful.mongoose; 
@@ -34,7 +34,7 @@ passportConfig();
 
 app.post('/login',login);
 
-//TODO: 별도 파일로 이동
+
 app.get('/auth',(req,res)=>{
     auth(req,res,(user:any)=>{
         if(!user){
@@ -59,12 +59,19 @@ mongoose.connect("mongodb://root:mongodb@localhost:27017/gitple?authSource=admin
 UserModel.register(app,'/users'); //join, get user info
 ContentsModel.register(app,'/contents'); 
 
+app.get('/id-check/:id',checkIdValid)
 
 
   
 app.get('/top5',async(req,res)=> {
     let wordList = await getTop5();
-    res.status(200).json(wordList);
+    if(wordList.length){
+        return res.status(200).json(wordList)
+    }else{
+        return res.status(500).json({
+            message: "Cannot find top 5 list"
+        })
+    }
 })
 
 app.listen( PORT, ()=>{

@@ -42,7 +42,9 @@
         삭제
       </button>
 
-      <button type="submit" class="btn btn-warning">
+      <!-- diabled 추가  -->
+      <button type="submit" class="btn btn-warning" 
+        [disabled]="!postingForm.form.valid">
         {{ state==="post"? "등록":"수정"}}
       </button>
     </div>

@@ -33,6 +33,7 @@ export class ContentsDetailComponent implements OnInit {
       content => {
         this.content = content;
 
+        //TODO: sub 하자마자 이전 정보 가져오기 
         const localUserToken =`${localStorage.getItem("gitple_token")}`;
         this.userService.getUserData(localUserToken).subscribe(
           userData =>{
@@ -41,6 +42,7 @@ export class ContentsDetailComponent implements OnInit {
               this.isWritter=true: this.isWritter=false;
           }
         )
+        //TODO: 실패시 err 처리 추가 
       }
     )
   }

@@ -1,30 +1,16 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Join} from '../app/model/join';
 import {User} from '../app/model/user';
 import {Observable, of} from 'rxjs';
 import {GlobalState} from '../app/global-state.service';
 import {HttpClient} from '@angular/common/http';
-import { catchError, tap} from 'rxjs/operators';
+import {catchError, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  userList: Join[] = [
-    {
-      userId: "nana",
-      password:"nana",
-      passwordConfirm: "nana",
-      joinedDate: new Date("2020-01-01"),
-    },
-    {
-      userId: "mango",
-      password:"mango",
-      passwordConfirm: "mango",
-      joinedDate: new Date("2020-01-02")
-    },
-  ]
-
+  userList: Join[];
   userData:User;
 
   constructor(
@@ -34,9 +20,11 @@ export class UserService {
 
   URL = 'http://localhost:8000';
 
-
-  checkIdValid(id:string):boolean{
-    return !!this.userList.find(user => user.userId === id)
+  // DONE: db connection
+  checkIdValid(id:string):Observable<any>{
+    return this.http.get<User>(`${this.URL}/id-check/${id}`).pipe(
+      catchError(this.handleError('Id validation'))
+    )
   }
 
   join(userData):Observable<Join>{
@@ -63,7 +51,9 @@ export class UserService {
   getUserData(token:string):Observable<User>{
     return this.http.get<User>(`${this.URL}/auth`,{
       headers: {'Authorization':`Bearer ${token}`}
-    })
+    }).pipe(
+      catchError(this.handleError<User>("Get user data"))
+    )
   }
 
   private handleError<T>(operation='operation',result?:T){

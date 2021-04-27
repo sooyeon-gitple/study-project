@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
   
 
   ngOnInit(): void {  }
+  //TODO: login, contents -> typescript
+  //TODO: yarn lint 사용해보기 
 
   onSubmit():void{
     this.userService.login(this.loginUser.userId, this.loginUser.password)

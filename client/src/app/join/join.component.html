@@ -9,18 +9,22 @@
   <form (ngSubmit)="onSubmit()" #joinForm="ngForm" [hidden]="submitted">
 
     <div class="input-group mb-3 input-group-sm">
-      <input type="text" class="form-control" placeholder="아이디" required [(ngModel)]="joinModel.userId" name="joinId"
+      <input type="text" class="form-control" placeholder="아이디" 
+        required [(ngModel)]="joinModel.userId" name="joinId"
         (ngModelChange)="onChangeId(joinId)" #joinId="ngModel">
-      <button class="btn btn-outline-secondary" type="button" (click)="idValidCheck()">
+      <button class="btn btn-outline-secondary" type="button" 
+        [disabled]="joinModel.userId.length<4"
+        (click)="idValidCheck()">
         중복 확인
       </button>
     </div>
 
+    <!-- //TODO: 영어ver -->
     <div [hidden]="joinId.valid || joinId.pristine" class="form-text">
       아이디를 입력해주세요.
     </div>
     <div [hidden]="joinId.pristine || joinModel.userId.length>3" class="form-text text-warning">
-      아이디는 3글자 이상이어야합니다.
+      아이디는 4글자 이상이어야합니다.
     </div>
     <div [hidden]="idCheck!=='ready' || joinId.pristine || joinId.invalid" class="form-text text-warning">
       아이디 중복 확인을 해주세요.
@@ -55,7 +59,9 @@
     </div>
 
     <div class="text-center" role="group" aria-label="...">
-      <button type="submit" class="btn btn-lg btn-block btn-primary" [disabled]="!joinForm.form.valid">
+      <!-- disabled 조건 2개 추가함 -->
+      <button type="submit" class="btn btn-lg btn-block btn-primary" 
+      [disabled]="!joinForm.form.valid || idCheck!=='pass'">
         회원 가입
       </button>
     </div>

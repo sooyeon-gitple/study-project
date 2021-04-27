@@ -16,7 +16,7 @@ export class JoinComponent implements OnChanges {
     passwordConfirm: "",
     joinedDate: new Date(),
   };
-  idCheck = "ready"; //["ready", "pass", "fail"];
+  idCheck:"ready"|"pass"|"fail" = "ready"; 
 
   constructor(
     private userService: UserService
@@ -32,12 +32,14 @@ export class JoinComponent implements OnChanges {
 
 
   idValidCheck():void{
-    const existId = this.userService.checkIdValid(this.joinModel.userId);
-    if(existId){
-      this.idCheck = "fail";
-    }else{
-      this.idCheck= "pass";
-    }
+    this.userService.checkIdValid(this.joinModel.userId).subscribe(
+      res => {
+        if(res.result==="ok"){
+          this.idCheck='pass'
+        }else{
+          this.idCheck='fail'
+        }
+      })
   }
 
 

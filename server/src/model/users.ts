@@ -1,6 +1,6 @@
 const restful = require('node-restful');
 import {Schema, Document} from 'mongoose';
-
+import {Request, Response, NextFunction} from 'express';
 
 export interface IUser extends Document {
     userId: string;
@@ -27,3 +27,19 @@ export const UserModel = restful.model(
 ).methods(['get','post']);
 
 
+export const checkIdValid = async(req:Request, res: Response, next:NextFunction) =>{
+    console.log(req.params.id)
+    const foundId = await UserModel.findOne({userId: req.params.id});
+
+    if(foundId===null){
+        return res.status(200).json({
+            result: "ok"
+        })
+    }else{
+        return res.status(200).json({
+            result: "exist Id"
+        })
+    }
+
+
+}

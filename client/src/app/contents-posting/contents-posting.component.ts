@@ -34,6 +34,10 @@ export class ContentsPostingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    //TODO: dynamic form 사용해보기 (form builder)
+
+
     /*
     OnInit()은 매 페이지 접근시 실행
     subscribe 는 새로고침시에만 (메뉴 링크 타고 접근시 X)
@@ -93,6 +97,7 @@ export class ContentsPostingComponent implements OnInit {
     }else{
       //토큰도 없다니  
       this.token= null;
+      this.router.navigate(['/contents-list']); //redirect
     }
   }
 
