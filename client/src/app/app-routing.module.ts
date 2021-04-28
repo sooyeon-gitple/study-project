@@ -9,7 +9,7 @@ import {ContentsDetailComponent} from './contents-detail/contents-detail.compone
 import {ContentsPostingComponent} from './contents-posting/contents-posting.component';
 import {MainComponent} from './main/main.component';
 
-const routes:Routes = [
+const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'join', component: JoinComponent },
   { path: 'login', component: LoginComponent },

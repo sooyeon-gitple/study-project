@@ -5,6 +5,7 @@ import {Location} from '@angular/common';
 import {Content} from '../model/content';
 import {ContentsService} from '../../service/contents.service';
 import { UserService } from 'src/service/user.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contents-detail',
@@ -21,6 +22,7 @@ export class ContentsDetailComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private location: Location,
+    public translate: TranslateService
     ) { }
 
   ngOnInit(): void {

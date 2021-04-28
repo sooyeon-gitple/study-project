@@ -1,0 +1,42 @@
+{
+    "MAIN": "홈으로",
+    "CONTENTS": "글 목록",
+    "KEYWORD5": "키워드 TOP 5",
+    "POST": "새 글 등록",
+    "WELCOME": "{{user}} 님, 환영합니다.",
+    "JOIN": "가입하기",
+    "LOGIN": "로그인",
+    "LOGOUT": "로그아웃",
+
+    "JOIN_TITLE": "회원 가입",
+    "JOIN_SUBTITLE": "Join",
+    "ID": "아이디",
+    "VALIDATE": "중복 확인",
+    "PW": "비밀번호",
+    "PWCF": "비밀번호 확인",
+    "JOIN_SUBMIT": "회원가입 하기",
+    "ID_NOT_VALID": "아이디를 입력해주세요.",
+    "ID_MIN": "아이디는 4글자 이상이어야합니다.",
+    "NOT_VALIDATED": "아이디 중복 확인을 해주세요.",
+    "EXIST_ID": "이미 가입된 아이디입니다.",
+    "CAN_USE_ID": "사용 가능한 아이디입니다.",
+    "NO_PW": "비밀번호를 입력해주세요.",
+    "NO_PW_CF": "비밀번호를 한 번 더 입력해주세요.",
+    "PW_NOT_MATCH": "비밀번호와 비밀번호 확인이 일치하지 않습니다.",
+    "JOIN_COMPLETE": "회원 가입 완료! ",
+    "GO_LOGIN": " 로그인 하러 가기",
+    "LOGIN_SUCCESS": "로그인 되었습니다 🙌",
+    "LOGIN_FAILED": "로그인 실패 😫 : 아이디와 비밀번호를 확인해주세요.",
+
+    "ASK_JOIN" : "회원 가입 하시겠습니까?",
+    "JOIN_ERR": "가입되지 않았습니다. 새로고침 후 다시 시도해주세요.",
+
+    "ASK_LOGOUT": "로그아웃 하시겠습니까?",
+    
+    "CONTENTS_TITLE":"콘텐츠 리스트",
+    "CONTENTS_SUBTITLE":"전체 콘텐츠 리스트",
+    "WRITTER":"작성자",
+    "GO_LIST":"목록으로",
+    "EDIT_OR_DELETE":"수정/삭제하기"
+    
+}   

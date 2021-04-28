@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">메인으로</a>
+    <a class="navbar-brand" routerLink="/">
+      <!-- 메인으로 -->
+      {{'MAIN' | translate}}
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,35 +12,56 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/contents-list">
-            글 목록
+            <!-- 글 목록 -->
+            {{'CONTENTS' | translate}}
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/top-five">
-            키워드 Top 5
+            <!-- 키워드 Top 5 -->
+            {{'KEYWORD5' | translate}}
           </a>
         </li>
         <li class="nav-item" [hidden]="!userData">
           <a class="nav-link" routerLink="/post">
-            새 글 등록
+            <!-- 새 글 등록 -->
+            {{'POST' | translate}}
           </a>
         </li>
 
       </ul>
       <span *ngIf="userData" class="navbar-text">
-        {{userData?.userId}} 님, 환영합니다 !
+        <!-- {{userData?.userId}}  -->
+        <!-- 님, 환영합니다 ! -->
+        {{'WELCOME' | translate:param}}
       </span>
       <span class="navbar-text">
 
         <form class="container-fluid justify-content-start">
+
+          <!-- <select name="lng" id="lng" 
+            (change)="onChangeLanguage($event.target.value)">
+            <option value="ko" selected>한국어</option>
+            <option value="en">English</option>
+          </select> -->
+
+          <select #langSelect (change)="translate.use(langSelect.value)">
+            <option *ngFor="let lang of translate.getLangs()" 
+              [value]="lang"
+              [selected]="lang===translate.currentLang"
+              >
+              {{lang}}
+            </option>
+          </select>
+
           <button *ngIf="!userData" routerLink="/join" class="btn btn-sm btn-outline-secondary" type="button">
-            Join
+            {{'JOIN'|translate}}
           </button>
           <button *ngIf="userData" (click)="onLogout()" class="btn btn-sm btn-outline-secondary" type="button">
-            Logout
+            {{'LOGOUT'|translate}}
           </button>
           <button *ngIf="!userData" routerLink="/login" class="btn btn-sm btn-outline-success" type="button">
-            Login
+            {{'LOGIN'|translate}}
           </button>
         </form>
       </span>

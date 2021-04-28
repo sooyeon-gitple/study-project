@@ -1,7 +1,11 @@
 <section>
   <div class="page-header">
-    <h2>Join
-      <small class="text-muted h5">회원 가입</small>
+    <h2>
+      <!-- Join -->
+      {{'JOIN_TITLE' | translate}}
+      <small class="text-muted h5">
+        {{'JOIN_SUBTITLE' | translate}}
+      </small>
     </h2>
   </div>
 
@@ -9,70 +13,83 @@
   <form (ngSubmit)="onSubmit()" #joinForm="ngForm" [hidden]="submitted">
 
     <div class="input-group mb-3 input-group-sm">
-      <input type="text" class="form-control" placeholder="아이디" 
+      <input type="text" class="form-control" [placeholder]="'ID'|translate" 
         required [(ngModel)]="joinModel.userId" name="joinId"
         (ngModelChange)="onChangeId(joinId)" #joinId="ngModel">
       <button class="btn btn-outline-secondary" type="button" 
         [disabled]="joinModel.userId.length<4"
         (click)="idValidCheck()">
-        중복 확인
+        <!-- 중복 확인 -->
+        {{'VALIDATE' | translate}}
       </button>
     </div>
 
     <!-- //TODO: 영어ver -->
     <div [hidden]="joinId.valid || joinId.pristine" class="form-text">
-      아이디를 입력해주세요.
+      <!-- 아이디를 입력해주세요. -->
+      {{'ID_NOT_VALID' | translate}}
     </div>
     <div [hidden]="joinId.pristine || joinModel.userId.length>3" class="form-text text-warning">
-      아이디는 4글자 이상이어야합니다.
+      <!-- 아이디는 4글자 이상이어야합니다. -->
+      {{'ID_MIN' | translate}}
     </div>
     <div [hidden]="idCheck!=='ready' || joinId.pristine || joinId.invalid" class="form-text text-warning">
-      아이디 중복 확인을 해주세요.
+      <!-- 아이디 중복 확인을 해주세요. -->
+      {{'NOT_VALIDATED' | translate}}
     </div>
     <div [hidden]="idCheck!=='fail'|| joinId.pristine" class="form-text text-danger">
-      이미 가입된 아이디입니다.
+      <!-- 이미 가입된 아이디입니다. -->
+      {{'EXIST_ID' | translate}}
     </div>
     <div [hidden]="idCheck!=='pass'|| joinId.pristine" class="form-text text-success">
-      사용 가능한 아이디입니다.
+      <!-- 사용 가능한 아이디입니다. -->
+      {{'CAN_USE_ID' | translate}}
     </div>
 
     <div class="input-group mb-3 input-group-sm">
-      <input type="password" class="form-control" placeholder="비밀번호" id="joinPassword" required
+      <input type="password" class="form-control" [placeholder]="'PW'|translate" id="joinPassword" required
         [(ngModel)]="joinModel.password" name="joinPassword" #joinPassword="ngModel">
     </div>
     <div [hidden]="joinPassword.valid || joinPassword.pristine">
-      비밀번호를 입력해주세요.
+      <!-- 비밀번호를 입력해주세요. -->
+      {{'NO_PW' | translate}}
     </div>
 
     <div class="input-group mb-3 input-group-sm">
-      <input type="password" class="form-control" placeholder="비밀번호 확인" required name="joinPasswordConfirm"
+      <input type="password" class="form-control" [placeholder]="'PWCF'|translate" required name="joinPasswordConfirm"
         [(ngModel)]="joinModel.passwordConfirm" #joinPasswordConfirm="ngModel">
     </div>
 
     <div [hidden]="joinPasswordConfirm.valid || joinPasswordConfirm.pristine">
-      비밀번호를 한 번 더 입력해주세요.
+      <!-- 비밀번호를 한 번 더 입력해주세요. -->
+      {{'NO_PW_CF' | translate}}
     </div>
     <div [hidden]="(joinPassword.value === joinPasswordConfirm.value) || 
               joinPasswordConfirm.pristine" class="text-warning">
       <span class="glyphicon glyphicon-remove"></span>
-      비밀번호와 비밀번호 확인이 일치하지 않습니다.
+      <!-- 비밀번호와 비밀번호 확인이 일치하지 않습니다. -->
+      {{'PW_NOT_MATCH' | translate}}
     </div>
 
     <div class="text-center" role="group" aria-label="...">
-      <!-- disabled 조건 2개 추가함 -->
       <button type="submit" class="btn btn-lg btn-block btn-primary" 
       [disabled]="!joinForm.form.valid || idCheck!=='pass'">
-        회원 가입
+        <!-- 회원 가입 -->
+        {{'JOIN' | translate}}
       </button>
     </div>
   </form>
 
   <section class="text-center" [hidden]="!submitted" role="group">
-    <h3> 회원 가입 완료! 🎉</h3>
+    <h3> 
+      <!-- 회원 가입 완료!  -->
+      {{'JOIN_COMPLETE' | translate}}
+      🎉</h3>
 
     <div>
       <a routerLink="/login" class="btn btn-success">
-        로그인 하러 가기
+        <!-- 로그인 하러 가기 -->
+        {{'GO_LOGIN' | translate}}
       </a>
     </div>
 

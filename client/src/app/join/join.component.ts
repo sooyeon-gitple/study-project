@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Join } from '../model/join';
 import {UserService} from '../../service/user.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-join',
@@ -17,13 +18,22 @@ export class JoinComponent implements OnChanges {
     joinedDate: new Date(),
   };
   idCheck:"ready"|"pass"|"fail" = "ready"; 
+  currentLanguage;
 
   constructor(
-    private userService: UserService
-  ) { }
+    private userService: UserService,
+    public translate: TranslateService
+  ) { 
+    translate.onLangChange.subscribe( lang =>{
+      // console.log(lang)
+      this.currentLanguage =lang.translations;
+    })
+
+   }
 
   ngOnChanges(changes: SimpleChanges): void {
     throw new Error('Method not implemented.');
+    console.log(123)
   }
 
   onChangeId(changes: SimpleChanges): void {
@@ -52,7 +62,8 @@ export class JoinComponent implements OnChanges {
       return window.alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.")
     }
 
-    if(window.confirm("회원 가입 하시겠습니까?")){
+
+    if( window.confirm(this.currentLanguage.ASK_JOIN)){
         
       const userData = {
         userId :this.joinModel.userId,
@@ -63,10 +74,10 @@ export class JoinComponent implements OnChanges {
       this.userService.join(userData).subscribe(
         result =>{
           if(result._id){
-            window.alert("가입 되었습니다.")
+            window.alert(this.currentLanguage.JOIN_COMPLETE)
             this.submitted = true;
           }else{
-            window.alert("가입되지 않았습니다. 새로고침 후 다시 시도해주세요.")
+            window.alert(this.currentLanguage.JOIN_ERR)
           }
         });
     }

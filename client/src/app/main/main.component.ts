@@ -7,6 +7,8 @@ import { Component,
   // AfterViewInit, AfterViewChecked,
   // OnDestroy 
 } from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-main',
@@ -20,7 +22,9 @@ export class MainComponent implements OnInit
 {
 
   tapIndex:number = 0;
-  constructor() {
+  constructor(
+    public translate: TranslateService,
+  ) {
 
   }
   onClickTap(index:number){
@@ -29,7 +33,7 @@ export class MainComponent implements OnInit
 
 
   ngOnInit(): void {
-    console.log("on init")
+    console.log("on init - main");
   }
 
   // ngOnChanges(changes:SimpleChanges):void{

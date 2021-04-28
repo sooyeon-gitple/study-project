@@ -1,0 +1,43 @@
+{
+    "MAIN": "HOME",
+    "CONTENTS": "Contents List",
+    "KEYWORD5": "Keyword TOP 5",
+    "POST": "Register new content",
+    "WELCOME": "Welcome, {{user}}",
+    "JOIN":"Sign Up",
+    "LOGIN":"Sign In",
+    "LOGOUT": "Sign Out",
+
+    "JOIN_TITLE": "Sign Up",
+    "JOIN_SUBTITLE": "회원 가입",
+    "ID": "ID",
+    "VALIDATE": "Validate",
+    "PW": "Password",
+    "PWCF": "Password check",
+    "JOIN_SUBMIT": "Sign up as a member",
+    "ID_NOT_VALID": "Need Id",
+    "ID_MIN": "ID must be at least 4 characters.",
+    "NOT_VALIDATED": "Check validation please.",
+    "EXIST_ID": "Exist Id.",
+    "CAN_USE_ID": "You can use this ID.",
+    "NO_PW": "Need Password.",
+    "NO_PW_CF": "Write your password one more time.",
+    "PW_NOT_MATCH": "Password not matched",
+    "JOIN_COMPLETE": "Sign up completed",
+    "GO_LOGIN": "Go to Sign In",
+    "LOGIN_SUCCESS": "You Logged In 🙌",
+    "LOGIN_FAILED": "Sign in failed 😫 : Please check your ID and password.",
+
+    "ASK_JOIN" : "Would you like to sign up?",
+    "JOIN_ERR": "Not completed. Please refresh and try again.",
+
+    "ASK_LOGOUT": "Do you want to sign out?",
+
+    "CONTENTS_TITLE":"Contents",
+    "CONTENTS_SUBTITLE":"Total Contents List",
+    "WRITTER":"Writter",
+    "GO_LIST":"Back to List",
+    "EDIT_OR_DELETE":"Edit / Delete"
+    
+
+}

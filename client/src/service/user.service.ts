@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Join} from '../app/model/join';
 import {User} from '../app/model/user';
 import {Observable, of} from 'rxjs';
-import {GlobalState} from '../app/global-state.service';
+import {GlobalState} from './global-state.service';
 import {HttpClient} from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
 

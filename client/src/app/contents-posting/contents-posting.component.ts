@@ -4,7 +4,7 @@ import {Location} from '@angular/common';
 
 import {Content} from '../model/content';
 import {ContentsService} from '../../service/contents.service';
-import { GlobalState } from '../global-state.service';
+import { GlobalState } from '../../service/global-state.service';
 import { UserService } from 'src/service/user.service';
 
 @Component({
