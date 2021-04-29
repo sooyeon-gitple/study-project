@@ -1,66 +1,78 @@
 <section>
   <div class="page-header">
     <h2>
-      {{state==="post"? "새 글 등록하기":"글 수정하기"}}
+      {{ state === 'post' ? '새 글 등록하기' : '글 수정하기' }}
     </h2>
   </div>
 
-  <form *ngIf="token" (ngSubmit)="onSubmit()" #postingForm="ngForm">
 
+  <form *ngIf="token" (ngSubmit)="onSubmit()" #postingForm="ngForm">
     <div class="form-group">
       <div>
         <label for="title">제목</label>
-        <input type="text" class="form-control" id="title" 
-              requried 
-              [(ngModel)]="postingModel.title" 
-              name="title"
-              #title="ngModel">
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          requried
+          [(ngModel)]="postingModel.title"
+          name="title"
+          #title="ngModel"
+        />
       </div>
-    
+
       <div>
         <label for="text">내용</label>
         <!-- <input type="text" class="form-control" id="text" requried [(ngModel)]="postingModel.text" name="text"
           #title="ngModel"> -->
-  
-        <textarea class="form-control" rows="3" id="text"
-                  required
-                  [(ngModel)]="postingModel.text"
-                  name="text"
-                  #text="ngModel"
-          ></textarea>
-      </div>
 
+        <textarea
+          class="form-control"
+          rows="3"
+          id="text"
+          required
+          [(ngModel)]="postingModel.text"
+          name="text"
+          #text="ngModel"
+        ></textarea>
+      </div>
     </div>
 
     <div class="text-center" role="group">
- 
       <button type="button" class="btn btn-secondary" (click)="goBack()">
         취소
       </button>
 
-      <button type="button" *ngIf="state==='edit'" class="btn btn-danger" (click)="deleteContent()">
+      <button
+        type="button"
+        *ngIf="state === 'edit'"
+        class="btn btn-danger"
+        (click)="deleteContent()"
+      >
         삭제
       </button>
 
       <!-- diabled 추가  -->
-      <button type="submit" class="btn btn-warning" 
-        [disabled]="!postingForm.form.valid">
-        {{ state==="post"? "등록":"수정"}}
+      <button
+        type="submit"
+        class="btn btn-warning"
+        [disabled]="!postingForm.form.valid"
+      >
+        {{ state === 'post' ? '등록' : '수정' }}
       </button>
     </div>
-
   </form>
 
-  <div *ngIf="token===null" class="text-center need-login">
+  <div *ngIf="token === null" class="text-center need-login">
     <h4 class="text-danger">
       <span class="glyphicon glyphicon-ban-circle"></span>
       로그인 후 이용하실 수 있습니다
     </h4>
 
-    <a routerLink="/login" class="btn btn-primary">
-      로그인하러 가기
-    </a>
+    <a routerLink="/login" class="btn btn-primary"> 로그인하러 가기 </a>
   </div>
 
+  <app-dynamic-form [questions]="questions$|async">
+  </app-dynamic-form>
 
 </section>

@@ -8,7 +8,10 @@
         {{content.date | date:"yyyy/MM/dd"}} 
       </span>
       <span class="text-right text-muted">
-       | 작성자 : {{content.userId}}
+       | 
+       <!-- 작성자  -->
+       {{'WRITTER'|translate}}
+       : {{content.userId}}
       </span>
     </div>
 
@@ -20,11 +23,13 @@
   <div class="text-center">
 
     <a routerLink="/contents-list" role="button" class="btn btn-secondary">
-      목록으로
+      <!-- 목록으로 -->
+      {{'GO_LIST'|translate}}
     </a>
 
     <a [hidden]="!isWritter" role="button" routerLink="/edit/{{content._id}}" class="btn btn-warning">
-      수정 / 삭제 하기
+      <!-- 수정 / 삭제 하기 -->
+      {{'EDIT_OR_DELETE'|translate}}
     </a>
 
   </div>

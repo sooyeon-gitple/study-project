@@ -1,39 +1,32 @@
-import { Component, 
+import {
+  Component,
   Input,
-  OnInit, 
+  OnInit,
   // OnChanges,SimpleChanges,
   // DoCheck,
   // AfterContentInit ,AfterContentChecked,
   // AfterViewInit, AfterViewChecked,
-  // OnDestroy 
+  // OnDestroy
 } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
-
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   // styleUrls: ['./main.component.css'],
-  providers: []
+  providers: [],
 })
-export class MainComponent implements OnInit
 // ,OnChanges,DoCheck,AfterContentInit,AfterContentChecked,
-// AfterViewInit,AfterViewChecked,OnDestroy 
-{
-
-  tapIndex:number = 0;
-  constructor(
-    public translate: TranslateService,
-  ) {
-
-  }
-  onClickTap(index:number){
+// AfterViewInit,AfterViewChecked,OnDestroy
+export class MainComponent implements OnInit {
+  tapIndex = 0;
+  constructor(public translate: TranslateService) {}
+  onClickTap(index: number):void {
     this.tapIndex = index;
   }
 
-
   ngOnInit(): void {
-    console.log("on init - main");
+    console.log('on init - main');
   }
 
   // ngOnChanges(changes:SimpleChanges):void{
@@ -45,9 +38,9 @@ export class MainComponent implements OnInit
   //   console.log("do check")
   // }
 
-  // ngAfterContentInit():void{  
+  // ngAfterContentInit():void{
   //   console.log("after content init")
-  // } 
+  // }
 
   // ngAfterContentChecked():void{
   //   console.log("after conrtent checked")
@@ -62,5 +55,4 @@ export class MainComponent implements OnInit
   // ngOnDestroy():void{
   //   console.log("on destroy")
   // }
-  
 }

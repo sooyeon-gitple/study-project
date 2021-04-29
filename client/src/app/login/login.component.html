@@ -8,16 +8,15 @@
     </h2>
   </div>
 
-  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+  <form (ngSubmit)="onSubmit(template)" #loginForm="ngForm">
     <div class="mb-3 input-group-sm">
       <label for="userId" class="form-label">
         <!-- 아이디 -->
         {{'ID'|translate}}
       </label>
 
-      <input type="text" class="form-control" [placeholder]="'ID'|translate" 
-      required [(ngModel)]="loginUser.userId" name="userId"
-        #userId="ngModel" id="userId">
+      <input type="text" class="form-control" [placeholder]="'ID'|translate" required [(ngModel)]="loginUser.userId"
+        name="userId" #userId="ngModel" id="userId">
       <div [hidden]="userId.valid || userId.pristine" class="form-text">
         <!-- 아이디를 입력해주세요. -->
         {{'ID_NOT_VALID'| translate}}
@@ -29,8 +28,8 @@
         <!-- 비밀번호 -->
         {{ 'PW'|translate}}
       </label>
-      <input type="password" class="form-control" [placeholder]="'PW'|translate" aria-describedby="sizing-addon2" required
-        [(ngModel)]="loginUser.password" name="password" #password="ngModel" id="password">
+      <input type="password" class="form-control" [placeholder]="'PW'|translate" aria-describedby="sizing-addon2"
+        required [(ngModel)]="loginUser.password" name="password" #password="ngModel" id="password">
       <div [hidden]="password.valid || password.pristine" class="form-text">
         <!-- 비밀번호를 입력해주세요. -->
         {{'NO_PW'|translate}}
@@ -38,11 +37,26 @@
     </div>
 
     <div class="text-center" role="group" aria-label="...">
-      <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!loginForm.form.valid">
+
+      <button type="m" class="btn btn-primary btn-lg btn-block" [disabled]="!loginForm.form.valid" >
         <!-- 로그인 -->
         {{'LOGIN'|translate}}
       </button>
     </div>
   </form>
 
+
+
+
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Study Project : Login</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      {{modalMessage}}
+    </div>
+  </ng-template>
 </section>

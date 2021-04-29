@@ -1,0 +1,19 @@
+<div>
+  
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div *ngFor="let q of questions" class="form-group">
+      <app-dynamic-form-question [question]="q" [form]="form">
+      </app-dynamic-form-question>
+    </div>
+
+    <div class="text-center">
+        <button type="button" class="btn btn-secondary" >
+            취소
+          </button>
+      <button type="submit" [disabled]="!form.valid" class="btn btn-warning">
+          ㅈ ㅓ 장
+        </button>
+    </div>
+  </form>
+
+</div>

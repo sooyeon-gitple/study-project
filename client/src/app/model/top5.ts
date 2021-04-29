@@ -1,4 +1,4 @@
-export interface Top5{
-     keyword:string,
-     frequency: number
+export interface Top5 {
+  keyword: string;
+  frequency: number;
 }

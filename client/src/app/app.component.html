@@ -46,10 +46,7 @@
           </select> -->
 
           <select #langSelect (change)="translate.use(langSelect.value)">
-            <option *ngFor="let lang of translate.getLangs()" 
-              [value]="lang"
-              [selected]="lang===translate.currentLang"
-              >
+            <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang===translate.currentLang">
               {{lang}}
             </option>
           </select>
@@ -57,7 +54,7 @@
           <button *ngIf="!userData" routerLink="/join" class="btn btn-sm btn-outline-secondary" type="button">
             {{'JOIN'|translate}}
           </button>
-          <button *ngIf="userData" (click)="onLogout()" class="btn btn-sm btn-outline-secondary" type="button">
+          <button *ngIf="userData" (click)="onLogout(template)" class="btn btn-sm btn-outline-secondary" type="button">
             {{'LOGOUT'|translate}}
           </button>
           <button *ngIf="!userData" routerLink="/login" class="btn btn-sm btn-outline-success" type="button">
@@ -72,3 +69,14 @@
 </nav>
 
 <router-outlet></router-outlet>
+
+<!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Open modal</button>
+<br><br>
+<pre class="card card-block card-header">{{message}}</pre> -->
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>{{logoutMessage}}</p>
+    <button type="button" class="btn btn-default" (click)="confirm()"> Yes </button>
+    <button type="button" class="btn btn-primary" (click)="decline()"> No </button>
+  </div>
+</ng-template>
