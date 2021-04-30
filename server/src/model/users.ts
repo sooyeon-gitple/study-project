@@ -36,10 +36,10 @@ export const checkIdValid = async(req:Request, res: Response, next:NextFunction)
             result: "ok"
         })
     }else{
-        return res.status(200).json({
+        return res.status(200).json({ 
             result: "exist Id"
         })
     }
-
+//http code (ㅇ)
 
 }

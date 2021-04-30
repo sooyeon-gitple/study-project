@@ -72,7 +72,7 @@
     <a routerLink="/login" class="btn btn-primary"> 로그인하러 가기 </a>
   </div>
 
-  <app-dynamic-form [questions]="questions$|async">
-  </app-dynamic-form>
-
+  <!-- <app-dynamic-form [questions]="questions$|async">
+  </app-dynamic-form> -->
+  <app-reactive-form [state]=state [id]=id [postingModel]=postingModel></app-reactive-form>
 </section>

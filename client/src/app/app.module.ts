@@ -22,6 +22,7 @@ import { GlobalState } from '../service/global-state.service';
 import { MainComponent } from './main/main.component';
 import { DynamicFormQuestionComponent } from './dynamic-form-question/dynamic-form-question.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -39,6 +40,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MainComponent,
     DynamicFormQuestionComponent,
     DynamicFormComponent,
+    ReactiveFormComponent,
   ],
   imports: [
     BrowserModule,

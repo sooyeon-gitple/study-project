@@ -18,16 +18,6 @@ export class LoginComponent implements OnInit {
   currentLanguage;
   modalRef: BsModalRef;
   modalMessage = '';
-  scripts = {
-    loginSuccess: {
-      ko: '로그인 되었습니다 🙌',
-      en: 'Signed in 🙌',
-    },
-    loginFail: {
-      ko: '로그인 실패 😫 : 아이디와 비밀번호를 확인해주세요.',
-      en: 'Sign in failed 😫 : Please check your ID and password.',
-    },
-  };
 
   constructor(
     private userService: UserService,
@@ -35,13 +25,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     public translate: TranslateService,
     private modalService: BsModalService
-  ) {
-    // sub 발생 전에 사용할 기본 언어 설정 필요
-    // translate.onLangChange.subscribe( lang =>{
-    //   this.currentLanguage =lang.translations;
-    // })
-    this.currentLanguage = translate.currentLang;
-  }
+  ) {  }
 
   ngOnInit(): void {}
   // TODO: login, contents -> typescript
@@ -53,18 +37,18 @@ export class LoginComponent implements OnInit {
       .subscribe((loginData: User) => {
         if (loginData) {
           // window.alert("로그인 되었습니다 🙌")
-
+          this.currentLanguage = this.translate.currentLang;
           // SET Modal message
-          this.modalMessage = this.scripts.loginSuccess[this.currentLanguage];
+          this.modalMessage = this.translate.instant('LOGIN_SUCCESS');
           // SHOW modal
           this.modalRef = this.modalService.show(template);
           localStorage.setItem('gitple_token', loginData.token);
-          this._state.notify('login', loginData);
+          this._state.notifyDataChanged('login', loginData);
           this.router.navigate(['/contents-list']);
         } else {
           // window.alert("로그인 실패 😫 : 아이디와 비밀번호를 확인해주세요.")
-
-          this.modalMessage = this.scripts.loginFail[this.currentLanguage];
+          this.currentLanguage = this.translate.currentLang;
+          this.modalMessage = this.translate.instant('LOGIN_FAILED');
           this.modalRef = this.modalService.show(template);
 
           this._state.notify('login', null);

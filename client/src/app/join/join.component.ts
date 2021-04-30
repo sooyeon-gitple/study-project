@@ -31,7 +31,6 @@ export class JoinComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     throw new Error('Method not implemented.');
-    console.log(123);
   }
 
   onChangeId(changes: SimpleChanges): void {

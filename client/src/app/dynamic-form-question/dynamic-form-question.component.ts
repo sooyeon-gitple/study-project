@@ -18,6 +18,5 @@ export class DynamicFormQuestionComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(123,this.question);
   }
 }

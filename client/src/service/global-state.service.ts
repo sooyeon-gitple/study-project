@@ -23,7 +23,7 @@ export class GlobalState {
       data: value,
     });
   }
-  //데이터가 변경되었을때만 notify
+  // 이전데이터도 알려주면서 notify (subscribeBehavior 랑 짝꿍)
   notifyDataChanged(event, value) {
     let current = this._data[event];
     if (current !== value) {
@@ -44,7 +44,7 @@ export class GlobalState {
     this._subscriptions.set(event, subscribers);
     return state.id;
   }
-  //sub 하는 순간 이전 상태 return (없을 경우 return null)
+  // sub 하는 순간 이전 상태 return (없을 경우 return null)
   subscribeBehavior(event: string, callback: Function): number {
     let stateId: number = this.subscribe(event, callback);
     if (!_.isUndefined(this._data[event]) && callback) {

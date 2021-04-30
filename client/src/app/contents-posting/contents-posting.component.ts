@@ -122,6 +122,7 @@ export class ContentsPostingComponent implements OnInit {
       .postNewContent(this.token, this.postingModel)
       .subscribe((result) => {
         if (result?._id) {
+          window.alert('정상 등록되었습니다.');
           this.router.navigate(['/contents-list']); // redirect
         } else {
           window.alert('글이 등록되지 않았습니다. 다시 시도해주세요.');

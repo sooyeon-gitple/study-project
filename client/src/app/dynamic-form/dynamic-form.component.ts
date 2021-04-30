@@ -11,6 +11,7 @@ import { QuestionControlService } from '../../service/question-control.service';
 })
 export class DynamicFormComponent implements OnInit {
   @Input() questions: QuestionBase<string>[] = [];
+  @Input() state: 'post' | 'edit';
   form: FormGroup;
   payLoad = '';
   constructor(private qcs: QuestionControlService) {}
@@ -20,7 +21,13 @@ export class DynamicFormComponent implements OnInit {
   }
 
   onSubmit(): void {
+    const confirm = window.confirm(
+      `글을 ${this.state === 'post' ? '등록' : '수정'} 하시겠습니까?`
+    );
     this.payLoad = JSON.stringify(this.form.getRawValue());
     console.log(this.payLoad);
   }
+
+
+
 }

@@ -20,11 +20,16 @@ export class TopFiveComponent implements OnInit {
   getTop5List(): void {
     this.top5Service.getTop5List().subscribe((top5List) => {
       this.loading = false;
-      if (top5List.length > 5) {
+
+
+      if (top5List && top5List.length > 5) {
         this.top5List = top5List.slice(0, 5);
       } else {
         this.top5List = top5List;
       }
+    },
+    error => {
+      console.warn('>>>>> error', error); //subscribe 이후 error catch
     });
   }
 }

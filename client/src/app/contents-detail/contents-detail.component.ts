@@ -31,7 +31,7 @@ export class ContentsDetailComponent implements OnInit {
   ngOnInit(): void {
     console.log('detail-  onInit');
     this._state.subscribeBehavior('login', (userData) => {
-      console.log(userData);
+      this.userData = userData;
     });
     this.getContent();
   }
@@ -40,8 +40,8 @@ export class ContentsDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.contentService.getContent(id).subscribe((content) => {
       this.content = content;
-
-      // TODO: sub 하자마자 이전 정보 가져오기
+      /*
+      // TODO: sub 하자마자 이전 정보 가져오기 --> global userState 사용으로 주석처리
       const localUserToken = `${localStorage.getItem('gitple_token')}`;
       this.userService.getUserData(localUserToken).subscribe((userData) => {
         // 로그인한 유저 === 글 쓴 유저인지 확인
@@ -49,6 +49,10 @@ export class ContentsDetailComponent implements OnInit {
           ? (this.isWritter = true)
           : (this.isWritter = false);
       });
+      */
+      this.userData?.userId === content.userId
+        ? (this.isWritter = true)
+        : (this.isWritter = false);
     });
   }
 }

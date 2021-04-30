@@ -1,0 +1,69 @@
+<form [formGroup]="contentForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label> 제목 </label>
+    <input type="text" class="form-control" formControlName="title" required />
+    <label> 내용 </label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="text"
+      required
+    />
+  </div>
+  <!-- <div formGrouÍpName="address">
+    <h3>Address</h3>
+
+    <label>
+      Street:
+      <input type="text" formControlName="street" />
+    </label>
+
+    <label>
+      City:
+      <input type="text" formControlName="city" />
+    </label>
+
+    <label>
+      State:
+      <input type="text" formControlName="state" />
+    </label>
+
+    <label>
+      Zip Code:
+      <input type="text" formControlName="zip" />
+    </label>
+  </div> -->
+  <div class="text-center" role="group">
+    <button type="button" class="btn btn-secondary" (click)="goBack()">
+      취소
+    </button>
+
+    <button
+      type="button"
+      *ngIf="state === 'edit'"
+      class="btn btn-danger"
+      (click)="deleteContent()"
+    >
+      삭제
+    </button>
+    <button
+      type="submit"
+      class="btn btn-warning"
+      [disabled]="!contentForm.valid"
+    >
+      {{ state === 'post' ? '등록' : '수정' }}
+    </button>
+  </div>
+  <!-- <div formArrayName="tags">
+    <h3>tags</h3>
+
+    <button (click)="addTag()">Add tag</button>
+
+    <div *ngFor="let tags of tags.controls; let i = index">
+        <label> Tags</label>
+        <input type="text" [formControlName]="i">
+    </div>
+  </div>
+ -->
+  <div>Form status: {{ contentForm.status }}</div>
+</form>
